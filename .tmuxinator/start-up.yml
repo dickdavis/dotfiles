@@ -1,0 +1,41 @@
+# ~/.tmuxinator/start-up.yml
+
+name: start-up
+root: ~/
+
+# Optional tmux socket
+# socket_name: foo
+
+# Runs before everything. Use it to start daemons etc.
+# pre: sudo /etc/rc.d/mysqld start
+
+# Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
+pre_window: rvm use ruby-2.2.3
+
+# Pass command line options to tmux. Useful for specifying a different tmux.conf.
+# tmux_options: -f ~/.tmux.mac.conf
+
+# Change the command to call tmux.  This can be used by derivatives/wrappers like byobu.
+# tmux_command: byobu
+
+# Specifies (by name or index) which window will be selected on project startup. If not set, the first window is used.
+# startup_window: logs
+
+# Controls whether the tmux session should be attached to automatically. Defaults to true.
+# attach: false
+
+# Runs after everything. Use it to attach to tmux with custom options etc.
+# post: tmux -CC attach -t ruby-dev
+
+windows:
+  - starg:
+      layout: 3e14,76x42,0,0[76x10,0,0{38x10,0,0,9,37x10,39,0,14},76x10,0,11{38x10,0,11,12,37x10,39,11,15},76x10,0,22{38x10,0,22,10,37x10,39,22,16},76x9,0,33{38x9,0,33,11,37x9,39,33,17}]
+      panes:
+        - clear && firejail firefox
+        - clear && firejail thunderbird
+        - clear && firejail --private=~/mybox "dropbox start -i && sleep inf"
+        - clear && firejail transmission-qt
+        - clear && firejail keepass
+        - clear
+        - clear
+        - clear
