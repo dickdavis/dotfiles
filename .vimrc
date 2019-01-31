@@ -59,6 +59,8 @@ vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 " Maps buffer cycling to arrow keys
 map <left> :bprevious<CR>
 map <right> :bnext<CR>
+" Allows moving between buffers without having to save
+set hidden
 " Enable creation of backup file
 set backup
 " Where backups will go
