@@ -40,6 +40,10 @@ set cindent
 set autoindent
 set smarttab
 set expandtab
+" Sets up code folding
+setlocal foldmethod=indent
+setlocal foldignore=
+set foldlevel=1
 " Show matching brackets
 set showmatch
 " Bracket blinking.
