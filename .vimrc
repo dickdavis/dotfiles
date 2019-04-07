@@ -40,10 +40,6 @@ set cindent
 set autoindent
 set smarttab
 set expandtab
-" Sets up code folding
-setlocal foldmethod=indent
-setlocal foldignore=
-set foldlevel=1
 " Show matching brackets
 set showmatch
 " Bracket blinking.
@@ -86,6 +82,7 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['ruby'] }
 let g:syntastic_ruby_checkers = ['mri', 'rubocop']
 let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_eslint_exe= '[ -f $(npm bin)/eslint ' . expand('%:p') . ' && $(npm bin)/eslint ' . expand('%:p') . ' || eslint ' . expand('%:p')
 
 " Vim-Slime
 let g:slime_target = "tmux"
