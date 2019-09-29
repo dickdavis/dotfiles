@@ -79,10 +79,12 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_aggregate_errors = 1
 let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['ruby'] }
 let g:syntastic_ruby_checkers = ['mri', 'rubocop']
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exe= '[ -f $(npm bin)/eslint ' . expand('%:p') . ' && $(npm bin)/eslint ' . expand('%:p') . ' || eslint ' . expand('%:p')
+let g:syntastic_sass_checkers = ['stylelint']
 
 " Vim-Slime
 let g:slime_target = "tmux"
@@ -98,4 +100,25 @@ map <Leader>t :call RunCurrentSpecFile()<CR>
 map <Leader>s :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
 map <Leader>a :call RunAllSpecs()<CR>
-let g:rspec_command = "!bundle exec rspec --drb {spec}"
+if filereadable("docker-compose.yml")
+  let g:rspec_command = "!docker-compose exec web bundle exec rspec --drb {spec}"
+else
+  let g:rspec_command = "!bundle exec rspec --drb {spec}"
+endif
+
+let g:rails_projections = {
+      \ "app/controllers/*_controller.rb": {
+      \   "command": "controller",
+      \   "test": [
+      \     "spec/requests/{}_spec.rb"
+      \   ]
+      \ }}
+
+" Ack.vim
+let g:ackprg = 'ag --vimgrep'
+
+" Vim-fugitive
+hi DiffAdd guifg=NONE ctermfg=46 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi DiffChange guifg=NONE ctermfg=190  guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi DiffDelete guifg=NONE ctermfg=203 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
+hi DiffText guifg=NONE ctermfg=190 guibg=NONE ctermbg=NONE gui=NONE cterm=REVERSE
