@@ -14,7 +14,7 @@ set mail_check=60
 set mbox_type=Maildir
 
 # Sending
-set smtp_url=smtp://$my_personal_user:$my_pwd@$my_smtp_host:$my_smtp_port
+set smtp_url=smtp://$my_user:$my_pwd@$my_smtp_host:$my_smtp_port
 set realname=$my_realname
 set from=$my_user
 set use_from=yes
@@ -22,8 +22,8 @@ set signature="~/.mutt/signature"
 
 # General
 set sidebar_visible=no
-alternative_order text/plain text/enriched text/html
 set mailcap_path="~/.mutt/mailcap"
+alternative_order text/plain text/enriched text/html
 auto_view text/html
 
 # Crypto
@@ -64,7 +64,6 @@ bind pager g top
 bind pager G bottom
 bind attach,index g first-entry
 bind attach,index G last-entry
-bind index,pager B sidebar-toggle-visible
 bind index,pager \Cp sidebar-prev
 bind index,pager \Cn sidebar-next
 bind index,pager \Co sidebar-open
