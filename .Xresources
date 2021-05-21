@@ -1,4 +1,15 @@
-urxvt.perl-ext-common: default,resize-font
+urxvt.perl-ext-common: default,resize-font,clipboard,url-select,keyboard-select
+urxvt.copyCommand: xclip -i -selection clipboard
+urxvt.pasteCommand: xclip -o -selection clipboard
+urxvt.keysym.M-c: perl:clipboard:copy
+urxvt.keysym.M-v: perl:clipboard:paste
+urxvt.keysym.M-C-v: perl:clipboard:paste_escaped
+urxvt.keysym.M-Escape: perl:keyboard-select:activate
+urxvt.keysym.M-s: perl:keyboard-select:search
+urxvt.keysym.M-u: perl:url-select:select_next
+urxvt.urlLauncher: firefox
+urxvt.underlineURLs: true
+urxvt.urlButton: 1
 *.foreground:  #bbbbbb
 *.background:  #121212
 *.cursorColor: #bbbbbb
