@@ -1,3 +1,4 @@
+urxvt.perl-ext-common: default,resize-font
 *.foreground:  #bbbbbb
 *.background:  #121212
 *.cursorColor: #bbbbbb
@@ -29,14 +30,14 @@
 *.colorBD:     #ffffff
 !*.colorIT:
 !*.colorUL:
-*.font: xft:Iosevka:style=Regular:size=8
-*.boldFont: xft:Iosevka:style=Bold:size=8
-*.italicFont: xft:Iosevka:style=Italic:size=8
-*.boldItalicFont: xft:Iosevka:style=Bold Italic:size=8
+urxvt.font: xft:Iosevka:style=Regular:size=14
+urxvt.boldFont: xft:Iosevka:style=Bold:size=14
+urxvt.italicFont: xft:Iosevka:style=Italic:size=14
+urxvt.boldItalicFont: xft:Iosevka:style=Bold Italic:size=14
 *.letterSpace: 0
 *.lineSpace: 0
 *.geometry: 92x24
-*.internalBorder: 24
+*.internalBorder: 12
 *.cursorBlink: true
 *.cursorUnderline: false
 *.saveline: 2048
