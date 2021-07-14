@@ -1,5 +1,3 @@
-" Loads the installed plugins
-execute pathogen#infect()
 " Enables syntax highlighting
 syntax enable
 " Enables filetype detection and indentation
@@ -71,7 +69,8 @@ cnoremap w!! w !sudo tee > /dev/null %
 set rnu
 runtime! macros/matchit.vim
 
-" Syntastic
+" syntastic
+" https://github.com/vim-syntastic/syntastic
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -86,16 +85,22 @@ let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exe= '[ -f $(npm bin)/eslint ' . expand('%:p') . ' && $(npm bin)/eslint ' . expand('%:p') . ' || eslint ' . expand('%:p')
 let g:syntastic_sass_checkers = ['stylelint']
 
-" Vim-Slime
+" vim-slime
+" https://github.com/jpalardy/vim-slime
 let g:slime_target = "tmux"
 let g:slime_paste_file = "$HOME/.slime_paste"
 
-" Vim-Airline
+" vim-airline
+" https://github.com/vim-airline/vim-airline
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
+
+" vim-airline-themes
+" https://github.com/vim-airline/vim-airline-themes
 let g:airline_theme='molokai'
 
-" Vim-RSpec
+" vim-rspec
+" https://github.com/thoughtbot/vim-rspec
 map <Leader>t :call RunCurrentSpecFile()<CR>
 map <Leader>s :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
@@ -106,6 +111,8 @@ else
   let g:rspec_command = "!bundle exec rspec --drb {spec}"
 endif
 
+" vim-rails
+" https://github.com/tpope/vim-rails
 let g:rails_projections = {
       \ "app/controllers/*_controller.rb": {
       \   "command": "controller",
@@ -114,11 +121,12 @@ let g:rails_projections = {
       \   ]
       \ }}
 
-" Ack.vim
-let g:ackprg = 'ag --vimgrep'
-
-" Vim-fugitive
+" vim-fugitive
+" https://github.com/tpope/vim-fugitive
 hi DiffAdd guifg=NONE ctermfg=46 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi DiffChange guifg=NONE ctermfg=190  guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi DiffDelete guifg=NONE ctermfg=203 guibg=NONE ctermbg=NONE gui=NONE cterm=NONE
 hi DiffText guifg=NONE ctermfg=190 guibg=NONE ctermbg=NONE gui=NONE cterm=REVERSE
+
+" vim-ags
+" https://github.com/gabesoft/vim-ags
