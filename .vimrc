@@ -99,16 +99,19 @@ let g:airline#extensions#tabline#enabled = 1
 " https://github.com/vim-airline/vim-airline-themes
 let g:airline_theme='molokai'
 
-" vim-rspec
-" https://github.com/thoughtbot/vim-rspec
-map <Leader>t :call RunCurrentSpecFile()<CR>
-map <Leader>s :call RunNearestSpec()<CR>
-map <Leader>l :call RunLastSpec()<CR>
-map <Leader>a :call RunAllSpecs()<CR>
+" vim-test
+" https://github.com/vim-test/vim-test
+nmap <silent> <leader>t :TestNearest<CR>
+nmap <silent> <leader>T :TestFile<CR>
+nmap <silent> <leader>a :TestSuite<CR>
+nmap <silent> <leader>l :TestLast<CR>
+nmap <silent> <leader>g :TestVisit<CR>
+let test#strategy = "dispatch"
+let test#ruby#bundle_exec = 0
 if filereadable("docker-compose.yml")
-  let g:rspec_command = "!docker-compose exec web bundle exec rspec --drb {spec}"
+  let test#ruby#rspec#executable = 'docker-compose exec web bundle exec rspec'
 else
-  let g:rspec_command = "!bundle exec rspec --drb {spec}"
+  let test#ruby#rspec#executable = 'bundle exec rspec'
 endif
 
 " vim-rails
@@ -117,7 +120,7 @@ let g:rails_projections = {
       \ "app/controllers/*_controller.rb": {
       \   "command": "controller",
       \   "test": [
-      \     "spec/requests/{}_spec.rb"
+      \     "spec/requests/{}_controller_spec.rb"
       \   ]
       \ }}
 
