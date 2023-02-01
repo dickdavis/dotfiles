@@ -98,11 +98,14 @@ let g:airline#extensions#tabline#enabled = 1
 " vim-airline-themes
 " https://github.com/vim-airline/vim-airline-themes
 let g:airline_theme='molokai'
+packadd! dracula
+syntax enable
+colorscheme dracula
 
 " vim-test
 " https://github.com/vim-test/vim-test
 nmap <silent> <leader>t :TestNearest<CR>
-nmap <silent> <leader>T :TestFile<CR>
+nmap <silent> <leader>f :TestFile<CR>
 nmap <silent> <leader>a :TestSuite<CR>
 nmap <silent> <leader>l :TestLast<CR>
 nmap <silent> <leader>g :TestVisit<CR>
