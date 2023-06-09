@@ -69,6 +69,8 @@ cnoremap w!! w !sudo tee > /dev/null %
 set rnu
 runtime! macros/matchit.vim
 
+packloadall
+
 " syntastic
 " https://github.com/vim-syntastic/syntastic
 set statusline+=%#warningmsg#
@@ -79,10 +81,11 @@ let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_aggregate_errors = 1
-let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['ruby'] }
+let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['ruby', 'javascript'] }
+let g:syntastic_filetype_map = {"javascriptreact": "javascript", "typescriptreact": "typescript"}
 let g:syntastic_ruby_checkers = ['mri', 'rubocop']
 let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_javascript_eslint_exe= '[ -f $(npm bin)/eslint ' . expand('%:p') . ' && $(npm bin)/eslint ' . expand('%:p') . ' || eslint ' . expand('%:p')
+" let g:syntastic_javascript_eslint_exe= '[ -f $(npm bin)/eslint ' . expand('%:p') . ' && $(npm bin)/eslint ' . expand('%:p') . ' || eslint ' . expand('%:p')
 let g:syntastic_sass_checkers = ['stylelint']
 
 " vim-slime
