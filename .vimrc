@@ -86,7 +86,6 @@ let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['ruby', 'jav
 let g:syntastic_filetype_map = {"javascriptreact": "javascript", "typescriptreact": "typescript"}
 let g:syntastic_ruby_checkers = ['mri', 'rubocop']
 let g:syntastic_javascript_checkers = ['eslint']
-" let g:syntastic_javascript_eslint_exe= '[ -f $(npm bin)/eslint ' . expand('%:p') . ' && $(npm bin)/eslint ' . expand('%:p') . ' || eslint ' . expand('%:p')
 let g:syntastic_sass_checkers = ['stylelint']
 
 " vim-slime
@@ -94,16 +93,21 @@ let g:syntastic_sass_checkers = ['stylelint']
 let g:slime_target = "tmux"
 let g:slime_paste_file = "$HOME/.slime_paste"
 
-colorscheme sorbet
-
 " vim-airline
 " https://github.com/vim-airline/vim-airline
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 
-" vim-airline-themes
-" https://github.com/vim-airline/vim-airline-themes
-let g:airline_theme='molokai'
+" tender.vim
+" https://github.com/jacoborus/tender.vim
+if (has("termguicolors"))
+  set termguicolors
+endif
+
+syntax enable
+colorscheme tender
+
+let g:airline_theme='tenderplus'
 
 " vim-test
 " https://github.com/vim-test/vim-test
