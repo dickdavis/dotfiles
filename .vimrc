@@ -67,6 +67,7 @@ set backupdir=~/.vim/backups
 set directory=~/.vim/tmp
 cnoremap w!! w !sudo tee > /dev/null %
 set rnu
+syntax enable
 runtime! macros/matchit.vim
 
 packloadall
@@ -93,6 +94,8 @@ let g:syntastic_sass_checkers = ['stylelint']
 let g:slime_target = "tmux"
 let g:slime_paste_file = "$HOME/.slime_paste"
 
+colorscheme sorbet
+
 " vim-airline
 " https://github.com/vim-airline/vim-airline
 let g:airline_powerline_fonts = 1
@@ -101,9 +104,6 @@ let g:airline#extensions#tabline#enabled = 1
 " vim-airline-themes
 " https://github.com/vim-airline/vim-airline-themes
 let g:airline_theme='molokai'
-packadd! dracula
-syntax enable
-colorscheme dracula
 
 " vim-test
 " https://github.com/vim-test/vim-test
