@@ -88,7 +88,11 @@ let g:syntastic_ruby_checkers = ['mri', 'rubocop']
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_sass_checkers = ['stylelint']
 
-" vim-slime
+" coc.nvim
+inoremap <silent><expr> <c-@> coc#refresh()
+inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+
+"vim-slime
 " https://github.com/jpalardy/vim-slime
 let g:slime_target = "tmux"
 let g:slime_paste_file = "$HOME/.slime_paste"
