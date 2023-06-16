@@ -145,3 +145,6 @@ hi DiffText guifg=NONE ctermfg=190 guibg=NONE ctermbg=NONE gui=NONE cterm=REVERS
 
 " vim-ags
 " https://github.com/gabesoft/vim-ags
+
+" copilot.nvim
+let g:copilot_filetypes = {'*': v:false}
