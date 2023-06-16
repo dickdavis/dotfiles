@@ -67,7 +67,6 @@ set backupdir=~/.vim/backups
 set directory=~/.vim/tmp
 cnoremap w!! w !sudo tee > /dev/null %
 set rnu
-syntax enable
 runtime! macros/matchit.vim
 
 packloadall
@@ -108,7 +107,6 @@ if (has("termguicolors"))
   set termguicolors
 endif
 
-syntax enable
 colorscheme tender
 
 let g:airline_theme='tenderplus'
