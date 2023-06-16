@@ -94,7 +94,7 @@ inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
 "vim-slime
 " https://github.com/jpalardy/vim-slime
 let g:slime_target = "tmux"
-let g:slime_paste_file = "$HOME/.slime_paste"
+let g:slime_paste_file = expand("$HOME/.slime_paste")
 
 " vim-airline
 " https://github.com/vim-airline/vim-airline
