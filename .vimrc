@@ -71,22 +71,6 @@ runtime! macros/matchit.vim
 
 packloadall
 
-" syntastic
-" https://github.com/vim-syntastic/syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_aggregate_errors = 1
-let g:syntastic_mode_map = { 'mode': 'active', 'active_filetypes': ['ruby', 'javascript'] }
-let g:syntastic_filetype_map = {"javascriptreact": "javascript", "typescriptreact": "typescript"}
-let g:syntastic_ruby_checkers = ['mri', 'rubocop']
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_sass_checkers = ['stylelint']
-
 " coc.nvim
 inoremap <silent><expr> <c-@> coc#refresh()
 inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
