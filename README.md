@@ -149,6 +149,28 @@ plugins:
 max_files: 5000
 ```
 
+The dash.vim plugin provides an integration with Dash. Install Dash by downloading it from the [official website](https://kapeli.com/dash) and then applying the license file.
+
+Download the following docsets by usings the Dash > Settings > Downloads interface:
+
+* Ruby 3
+* Ruby on Rails 7
+* Sass
+* Vim
+* Redis
+* React
+* PostgreSQL
+* JavaScript
+* Apple API Reference
+* C
+* Common Lisp
+* Font Awesome
+* Git
+* Ruby strftime
+* Rspec Expectations
+* Rails Migrations CLI
+* Vim
+
 ### Note on Docker
 
 It may be necessary to execute certain commands from within a docker context. One example of this is dispatching tests with vim-test.
