@@ -1,10 +1,18 @@
 # dotfiles
 
-This repository contains configuration files for vim, tmux, git, and spacemacs. Copy each of the files to the home directory to get started.
+This repository contains configuration files for vim, tmux, git, zsh, and spacemacs. Copy each of the files to the home directory to get started.
 
 ## Additional Setup
 
 Some additional setup and configuration is required.
+
+### Zsh
+
+Download and run the `ohmyzsh` script.
+
+```bash
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
 
 ### Git
 
