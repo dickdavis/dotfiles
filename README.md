@@ -24,6 +24,12 @@ brew install ctags
 
 ### Tmux
 
+Install tmux.
+
+```bash
+brew install tmux
+```
+
 Install the tmux package manager.
 
 ```bash
