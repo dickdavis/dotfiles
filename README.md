@@ -134,3 +134,15 @@ plugins:
   - solargraph-rails
 max_files: 5000
 ```
+
+### Note on Docker
+
+It may be necessary to execute certain commands from within a docker context. One example of this is dispatching tests with vim-test.
+
+```vimscript
+if filereadable("docker-compose.yml")
+  let test#ruby#rspec#executable = 'docker-compose exec app bundle exec rspec'
+else
+  let test#ruby#rspec#executable = 'bundle exec rspec'
+endif
+```
