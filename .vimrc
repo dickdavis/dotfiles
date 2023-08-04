@@ -71,10 +71,6 @@ runtime! macros/matchit.vim
 
 packloadall
 
-" coc.nvim
-inoremap <silent><expr> <c-@> coc#refresh()
-inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
-
 "vim-slime
 " https://github.com/jpalardy/vim-slime
 let g:slime_target = "tmux"
@@ -104,11 +100,7 @@ nmap <silent> <leader>l :TestLast<CR>
 nmap <silent> <leader>g :TestVisit<CR>
 let test#strategy = "dispatch"
 let test#ruby#bundle_exec = 0
-if filereadable("docker-compose.yml")
-  let test#ruby#rspec#executable = 'docker-compose exec web bundle exec rspec'
-else
-  let test#ruby#rspec#executable = 'bundle exec rspec'
-endif
+let test#ruby#rspec#executable = 'bundle exec rspec'
 
 " vim-rails
 " https://github.com/tpope/vim-rails
