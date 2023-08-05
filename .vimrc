@@ -75,6 +75,7 @@ packloadall
 " https://github.com/jpalardy/vim-slime
 let g:slime_target = "tmux"
 let g:slime_paste_file = expand("$HOME/.slime_paste")
+let g:slime_default_config = {"socket_name": "default", "target_pane": "{last}"}
 
 " vim-airline
 " https://github.com/vim-airline/vim-airline
@@ -98,9 +99,19 @@ nmap <silent> <leader>f :TestFile<CR>
 nmap <silent> <leader>a :TestSuite<CR>
 nmap <silent> <leader>l :TestLast<CR>
 nmap <silent> <leader>g :TestVisit<CR>
-let test#strategy = "dispatch"
+let test#strategy = "dispatch_background"
 let test#ruby#bundle_exec = 0
 let test#ruby#rspec#executable = 'bundle exec rspec'
+
+function! ToggleQuickFix()
+    if empty(filter(getwininfo(), 'v:val.quickfix'))
+        copen
+    else
+        cclose
+    endif
+endfunction
+
+nnoremap <silent> <leader>o :call ToggleQuickFix()<cr>
 
 " vim-rails
 " https://github.com/tpope/vim-rails
