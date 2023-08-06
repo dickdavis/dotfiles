@@ -71,6 +71,7 @@ Navigate to the newly created directory and clone the following repositories the
 * [vim-ags](https://github.com/gabesoft/vim-ags): Silver searcher plugin.
 * [vim-airline](https://github.com/vim-airline/vim-airline): Status/tabline.
 * [vim-gitgutter](https://github.com/airblade/vim-gitgutter): Show git diff in the sign column.
+* [vim-eunuch](https://github.com/tpope/vim-eunuch): Wrapper for shell commands.
 * [vim-javascript](https://github.com/pangloss/vim-javascript): Improved JS syntax highlighting and indentation.
 * [vim-jsx-pretty](https://github.com/MaxMEllon/vim-jsx-pretty): JSX syntax highlighting.
 * [vim-prettier](https://github.com/prettier/vim-prettier): Wrapper for prettier.
@@ -123,7 +124,7 @@ Then, open vim and install the coc.nvim extensions:
 :CocInstall coc-json coc-html coc-eslint coc-tsserver coc-solargraph coc-css
 ```
 
-Lastly, install the `solargraph` and `solargraph-rails` gems globally. The configuration file for `solargraph` can be generated in a project with command:
+Install the `solargraph` and `solargraph-rails` gems globally. The configuration file for `solargraph` can be generated in a project with command:
 
 ```bash
 solargraph config
