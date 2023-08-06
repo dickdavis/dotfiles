@@ -137,3 +137,7 @@ hi DiffText guifg=NONE ctermfg=190 guibg=NONE ctermbg=NONE gui=NONE cterm=REVERS
 
 " copilot.nvim
 let g:copilot_filetypes = {'*': v:false}
+nmap <silent> <leader>c :Copilot<CR>
+
+" Dash.vim
+nmap <silent> <leader>d :Dash<CR>
