@@ -2,6 +2,8 @@
 
 This repository contains configuration files for vim, tmux, git, zsh, and spacemacs. Copy each of the files to the home directory to get started.
 
+Check [here](cheatsheets/README.md) to view cheatsheets that document usage of the customizations.
+
 ## Additional Setup
 
 Some additional setup and configuration is required.
