@@ -38,6 +38,13 @@ set cindent
 set autoindent
 set smarttab
 set expandtab
+set foldmethod=indent
+set foldnestmax=10
+set foldenable
+set foldlevelstart=10
+" Save folds and cursor position when closing buffer
+autocmd BufWinLeave *.* mkview
+autocmd BufWinEnter *.* silent loadview
 " Show matching brackets
 set showmatch
 " Bracket blinking.
@@ -57,6 +64,8 @@ vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 " Maps buffer cycling to arrow keys
 map <left> :bprevious<CR>
 map <right> :bnext<CR>
+" Close netrw after opening file
+let g:netrw_fastbrowse = 0
 " Allows moving between buffers without having to save
 set hidden
 " Enable creation of backup file
@@ -103,15 +112,8 @@ let test#strategy = "dispatch_background"
 let test#ruby#bundle_exec = 0
 let test#ruby#rspec#executable = 'bundle exec rspec'
 
-function! ToggleQuickFix()
-    if empty(filter(getwininfo(), 'v:val.quickfix'))
-        copen
-    else
-        cclose
-    endif
-endfunction
-
-nnoremap <silent> <leader>o :call ToggleQuickFix()<cr>
+nmap <silent> <leader>ru :Dispatch! bundle exec rubocop %<CR>
+nmap <silent> <leader>re :Dispatch! bundle exec reek %<CR>
 
 " vim-rails
 " https://github.com/tpope/vim-rails
