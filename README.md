@@ -113,10 +113,7 @@ To configure coc.nvim, create `coc-settings.json` in the `~/.vim` directory and 
   "solargraph.diagnostics": true,
   "solargraph.formatting": true,
   "solargraph.hover": true,
-  "solargraph.logLevel": "debug",
-  "[javascript][ruby]": {
-    "coc.preferences.formatOnSave": true
-  }
+  "solargraph.logLevel": "debug"
 }
 ```
 
