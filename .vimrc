@@ -75,6 +75,7 @@ set backupdir=~/.vim/backups
 " Where temporary files will go
 set directory=~/.vim/tmp
 cnoremap w!! w !sudo tee > /dev/null %
+set clipboard=unnamed
 set rnu
 runtime! macros/matchit.vim
 
