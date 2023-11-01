@@ -65,7 +65,7 @@ Navigate to the newly created directory and clone the following repositories the
 
 * [auto-pairs](https://github.com/jiangmiao/auto-pairs): Insert or delete brackets, parens, quotes in pair.
 * [coc.nvim](https://github.com/neoclide/coc.nvim): LSP, syntax highlighting, linting, etc..
-* [copilot.vim](https://github.com/github/copilot.vim): Copilot integration.
+* [codeium.vim](https://github.com/Exafunction/codeium.vim): Codeium integration.
 * [dash.vim](https://github.com/rizzatti/dash.vim): Dash integration.
 * [dispatch](https://github.com/tpope/vim-dispatch): Asynchronous build and test dispatcher.
 * [fugitive](https://github.com/tpope/vim-fugitive): Git integration.
@@ -93,16 +93,10 @@ Ensure `the_silver_searcher` is installed so that `vim-ags` can utilize it for s
 brew install the_silver_searcher
 ```
 
-Setup copilot by entering the following command from within vim and following the instructions.
+Setup codeium by entering the following command from within vim and following the instructions.
 
 ```
-:Copilot setup
-```
-
-Copilot is disabled by default (modify `.vimrc` if this is not desired). To enable it for a session, execute the following from within vim.
-
-```
-:Copilot enable
+:Codeium Auth
 ```
 
 To configure coc.nvim, create `coc-settings.json` in the `~/.vim` directory and add the following configuration:

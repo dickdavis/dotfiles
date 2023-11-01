@@ -65,11 +65,6 @@ cheatsheet do
     end
 
     entry do
-      command '<leader>c'
-      name 'Open the Copilot panel and load suggestions.'
-    end
-
-    entry do
       command '<C-c><C-c>'
       name 'Send text to a REPL.'
       notes 'Default behavior uses `vip`. For a single line, use `<S-v><C-c><C-c>`'

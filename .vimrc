@@ -45,6 +45,8 @@ set foldlevelstart=10
 " Save folds and cursor position when closing buffer
 autocmd BufWinLeave *.* mkview
 autocmd BufWinEnter *.* silent loadview
+" Fix coc.nvim buffer issue
+set splitkeep=screen
 " Show matching brackets
 set showmatch
 " Bracket blinking.
@@ -112,6 +114,11 @@ nmap <silent> <leader>g :TestVisit<CR>
 let test#strategy = "dispatch_background"
 let test#ruby#bundle_exec = 0
 let test#ruby#rspec#executable = 'bundle exec rspec'
+" if filereadable("docker-compose.yml")
+"   let test#ruby#rspec#executable = 'docker-compose exec app bundle exec rspec'
+" else
+"   let test#ruby#rspec#executable = 'bundle exec rspec'
+" endif
 
 nmap <silent> <leader>ru :Dispatch! bundle exec rubocop %<CR>
 nmap <silent> <leader>re :Dispatch! bundle exec reek %<CR>
@@ -136,9 +143,8 @@ hi DiffText guifg=NONE ctermfg=190 guibg=NONE ctermbg=NONE gui=NONE cterm=REVERS
 " vim-ags
 " https://github.com/gabesoft/vim-ags
 
-" copilot.nvim
-let g:copilot_filetypes = {'*': v:false}
-nmap <silent> <leader>c :Copilot<CR>
-
 " Dash.vim
 nmap <silent> <leader>d :Dash<CR>
+
+" Handle whitespace for markdown files
+autocmd FileType md setlocal shiftwidth=2 tabstop=2
