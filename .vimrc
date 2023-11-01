@@ -143,6 +143,14 @@ hi DiffText guifg=NONE ctermfg=190 guibg=NONE ctermbg=NONE gui=NONE cterm=REVERS
 " vim-ags
 " https://github.com/gabesoft/vim-ags
 
+" codeium.vim
+" https://github.com/prabirshrestha/vim-codeium
+let g:codeium_disable_bindings = 1
+imap <script><silent><nowait><expr> <C-g> codeium#Accept()
+imap <Left>   <Cmd>call codeium#CycleCompletions(1)<CR>
+imap <Right>   <Cmd>call codeium#CycleCompletions(-1)<CR>
+imap <C-x>   <Cmd>call codeium#Clear()<CR>
+
 " Dash.vim
 nmap <silent> <leader>d :Dash<CR>
 

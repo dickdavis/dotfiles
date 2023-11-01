@@ -74,6 +74,28 @@ cheatsheet do
       command ':Ags'
       name 'Search for the provided input using `the_silver_searcher`.'
     end
+
+    entry do
+      command '<C-g>'
+      name 'Accept codeium suggestion.'
+    end
+
+    entry do
+      command '<C-x>'
+      name 'Clear codeium suggestion.'
+    end
+
+    entry do
+      command '<Right>'
+      name 'Cycle forwards through codeium suggestions.'
+      notes 'Insert mode only.'
+    end
+
+    entry do
+      command '<Left>'
+      name 'Cycle backwards through codeium suggestions.'
+      notes 'Insert mode only.'
+    end
   end
 
   notes <<-MARKDOWN
