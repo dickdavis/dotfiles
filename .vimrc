@@ -150,6 +150,7 @@ imap <script><silent><nowait><expr> <C-g> codeium#Accept()
 imap <Left>   <Cmd>call codeium#CycleCompletions(1)<CR>
 imap <Right>   <Cmd>call codeium#CycleCompletions(-1)<CR>
 imap <C-x>   <Cmd>call codeium#Clear()<CR>
+nmap <silent> <leader>c <Cmd>call codeium#Chat()<CR>
 
 " Dash.vim
 nmap <silent> <leader>d :Dash<CR>

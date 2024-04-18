@@ -86,6 +86,11 @@ cheatsheet do
     end
 
     entry do
+      command '<leader>c'
+      name 'Launch codeium chat.'
+    end
+
+    entry do
       command '<Right>'
       name 'Cycle forwards through codeium suggestions.'
       notes 'Insert mode only.'
