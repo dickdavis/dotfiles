@@ -8,6 +8,14 @@ Check [here](cheatsheets/README.md) to view cheatsheets that document usage of t
 
 Some additional setup and configuration is required.
 
+### Alacritty
+
+Install alacritty. If you are using MacOS, you'll need to use homebrew.
+
+```
+brew install --cask alacritty --no-quarantine
+```
+
 ### Zsh
 
 Download and run the `ohmyzsh` script.
