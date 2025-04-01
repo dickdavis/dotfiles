@@ -54,6 +54,12 @@ tmux source ~/.tmux.conf
 
 Install the plugins by pressing `prefix` + `I`.
 
+### Neovim
+
+Copy `.config/nvim` to your configured `XDG_CONFIG_HOME` directory. Then, run `:Lazy install` to install the plugins.
+
+You will need to authenticate with `:Codeium Auth` to use the `codeium.vim` plugin. Also, you should ensure that `ruby-lsp` and `standardrb` gems are installed.
+
 ### Vim
 
 Create a directory for the temporary and backup files.
