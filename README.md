@@ -1,6 +1,6 @@
 # dotfiles
 
-This repository contains configuration files for vim, tmux, git, and zsh. Copy each of the files to the home directory to get started.
+This repository contains configuration files for alacritty, neovim, vim, tmux, git, and zsh. Copy each of the files to the home directory to get started.
 
 Check [here](cheatsheets/README.md) to view cheatsheets that document usage of the customizations.
 
