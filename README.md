@@ -24,6 +24,26 @@ Download and run the `ohmyzsh` script.
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 
+Make a config directory for zsh and copy the config files over.
+
+```bash
+mkdir -p ~/.config/zsh && cp -r config/zsh/* ~/.config/zsh/
+```
+
+Copy the `.zshenv` file to your home directory.
+
+```bash
+cp .zshenv ~/.zshenv
+```
+
+Move the `oh-my-zsh` installation over to the `~/.config/zsh` directory.
+
+```bash
+mv ~/.oh-my-zsh ~/.config/zsh/.oh-my-zsh
+```
+
+Follow the instructions [here](https://draculatheme.com/zsh) to install the dracula theme manually.
+
 ### Git
 
 Install ctags so the included hooks can generate ctags automatically on different git actions.
