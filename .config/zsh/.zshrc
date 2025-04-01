@@ -2,13 +2,14 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
+export ZSH="$ZDOTDIR/.oh-my-zsh"
+export ZSHZ_DATA="$ZDOTDIR/.zsh_sessions"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+ZSH_THEME="dracula"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -41,7 +42,10 @@ ZSH_THEME="robbyrussell"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
+# ENABLE_CORRECTION="true"
+DISABLE_CORRECTION="true"
+DISABLE_AUTO_TITLE="true"
+unsetopt correct_all
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # You can also set it to another string to have that shown instead of the default red dots.
@@ -61,6 +65,7 @@ ENABLE_CORRECTION="true"
 # or set a custom format using the strftime function format specifications,
 # see 'man strftime' for details.
 # HIST_STAMPS="mm/dd/yyyy"
+HISTFILE="$ZDOTDIR/.zsh_history"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -73,8 +78,9 @@ ENABLE_CORRECTION="true"
 plugins=(git asdf)
 
 source $ZSH/oh-my-zsh.sh
-source ~/.zsh_aliases
-source ~/.zsh_secrets
+source "$ZDOTDIR/.zsh_aliases"
+source "$ZDOTDIR/.zsh_secrets"
+source "$ZDOTDIR/.zsh_local"
 
 # User configuration
 
@@ -97,7 +103,6 @@ export EDITOR='nvim'
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
 . "$HOME/.asdf/asdf.sh"
 export ASDF_DATA_DIR="/Users/dickdavis/.asdf"
 export PATH="$ASDF_DATA_DIR/shims:$PATH"
