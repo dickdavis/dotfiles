@@ -1,19 +1,43 @@
 # dotfiles
 
-This repository contains configuration files for alacritty, neovim, vim, tmux, git, and zsh. Copy each of the files to the home directory to get started.
+This repository contains configuration files for alacritty, neovim, vim, tmux, git, and zsh.
 
 Check [here](cheatsheets/README.md) to view cheatsheets that document usage of the customizations.
 
-## Additional Setup
+## Set-up
 
-Some additional setup and configuration is required.
+Clone the repo.
+
+```bash
+git clone git@github.com:dickdavis/dotfiles.git
+```
+
+Create a `~/.config` directory to store all of the configuration files.
+
+```bash
+mkdir ~/.config
+```
+
+Follow instructions for each tool to get started.
 
 ### Alacritty
 
-Install alacritty. If you are using MacOS, you'll need to use homebrew.
+Install alacritty.
 
-```
+```bash
 brew install --cask alacritty --no-quarantine
+```
+
+Make a config directory for alacritty.
+
+```bash
+mkdir ~/.config/alacritty
+```
+
+Copy the config file to the `~/.config/alacritty` directory.
+
+```bash
+cp .config/alacritty/alacritty.toml ~/.config/alacritty/
 ```
 
 ### Zsh
@@ -24,16 +48,10 @@ Download and run the `ohmyzsh` script.
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 
-Make a config directory for zsh and copy the config files over.
+Make a config directory for zsh.
 
 ```bash
-mkdir -p ~/.config/zsh && cp -r config/zsh/* ~/.config/zsh/
-```
-
-Copy the `.zshenv` file to your home directory.
-
-```bash
-cp .zshenv ~/.zshenv
+mkdir ~/.config/zsh
 ```
 
 Move the `oh-my-zsh` installation over to the `~/.config/zsh` directory.
@@ -42,15 +60,19 @@ Move the `oh-my-zsh` installation over to the `~/.config/zsh` directory.
 mv ~/.oh-my-zsh ~/.config/zsh/.oh-my-zsh
 ```
 
-Follow the instructions [here](https://draculatheme.com/zsh) to install the dracula theme manually.
-
-### Git
-
-Install ctags so the included hooks can generate ctags automatically on different git actions.
+Copy the config files over to the zsh config directory.
 
 ```bash
-brew install ctags
+cp -r .config/zsh/ ~/.config/zsh/
 ```
+
+Copy the `.zshenv` file to your home directory.
+
+```bash
+cp .zshenv ~/.zshenv
+```
+
+Follow the instructions [here](https://draculatheme.com/zsh) to install the dracula theme manually.
 
 ### Tmux
 
@@ -60,27 +82,98 @@ Install tmux.
 brew install tmux
 ```
 
+Make a config directory for tmux.
+
+```bash
+mkdir ~/.config/tmux
+```
+
+Copy the config file to the `~/.config/tmux` directory.
+
+```bash
+cp .config/tmux/tmux.conf ~/.config/tmux/
+```
+
 Install the tmux package manager.
 
 ```bash
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
 ```
 
 Reload the tmux environment to source TPM.
 
 ```bash
-tmux source ~/.tmux.conf
+tmux source ~/.config/tmux/tmux.conf
 ```
 
 Install the plugins by pressing `prefix` + `I`.
 
 ### Neovim
 
-Copy `.config/nvim` to your configured `XDG_CONFIG_HOME` directory. Then, run `:Lazy install` to install the plugins.
+Install neovim.
 
-You will need to authenticate with `:Codeium Auth` to use the `codeium.vim` plugin. Also, you should ensure that `ruby-lsp` and `standardrb` gems are installed.
+```bash
+brew install neovim
+```
+
+Make a config directory for neovim.
+
+```bash
+mkdir ~/.config/nvim
+```
+
+Copy `.config/nvim` to the `~/.config/nvim` directory.
+
+```bash
+cp -r .config/nvim/ ~/.config/nvim
+```
+
+Run `:Lazy install` to install the plugins.
+
+You will need to authenticate with `:Codeium Auth` to use the `codeium.vim` plugin.
+
+Also, you should ensure that `ruby-lsp` and `standardrb` gems are installed.
+
+### Git
+
+Install ctags so the included hooks can generate ctags automatically on different git actions.
+
+```bash
+brew install ctags
+```
+
+### Dash
+
+Install Dash by downloading it from the [official website](https://kapeli.com/dash) and then applying the license file.
+
+Download the following docsets by usings the Dash > Settings > Downloads interface:
+
+* Ruby 3
+* Ruby on Rails 7
+* Sass
+* Vim
+* Redis
+* React
+* PostgreSQL
+* JavaScript
+* Apple API Reference
+* C
+* Common Lisp
+* Font Awesome
+* Git
+* Ruby strftime
+* Rspec Expectations
+* Rails Migrations CLI
+
+### Docker
+
+Install Docker by downloading it from the [official website](https://docs.docker.com/get-started/get-docker/)
+
+## Optional
 
 ### Vim
+
+Skip this section if opting for Neovim.
 
 Create a directory for the temporary and backup files.
 
@@ -176,28 +269,6 @@ plugins:
   - solargraph-rails
 max_files: 5000
 ```
-
-The dash.vim plugin provides an integration with Dash. Install Dash by downloading it from the [official website](https://kapeli.com/dash) and then applying the license file.
-
-Download the following docsets by usings the Dash > Settings > Downloads interface:
-
-* Ruby 3
-* Ruby on Rails 7
-* Sass
-* Vim
-* Redis
-* React
-* PostgreSQL
-* JavaScript
-* Apple API Reference
-* C
-* Common Lisp
-* Font Awesome
-* Git
-* Ruby strftime
-* Rspec Expectations
-* Rails Migrations CLI
-* Vim
 
 ### Note on Docker
 
