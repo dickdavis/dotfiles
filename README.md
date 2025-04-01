@@ -134,6 +134,60 @@ You will need to authenticate with `:Codeium Auth` to use the `codeium.vim` plug
 
 Also, you should ensure that `ruby-lsp` and `standardrb` gems are installed.
 
+### Github CLI
+
+Install the `gh` CLI.
+
+```bash
+brew install gh
+```
+
+Login.
+
+```bash
+gh auth login
+```
+
+Generate a new SSH key.
+
+```bash
+ssh-keygen -t ed25519 -C "[EMAIL]"
+```
+
+Start the SSH agent.
+
+```bash
+eval "$(ssh-agent -s)"
+```
+
+Configure the SSH agent to load keys and store passphrases in the keychain.
+
+```bash
+# ~/.ssh/config
+Host *
+  AddKeysToAgent yes
+  UseKeychain yes
+  IdentityFile ~/.ssh/id_ed25519
+```
+
+Add the key to the SSH agent.
+
+```bash
+ssh-add --apple-use-keychain ~/.ssh/id_ed25519
+```
+
+Add the key to the Github account.
+
+```bash
+gh ssh-key add ~/.ssh/id_ed25519.pub --title "$(hostname)" --type authentication
+```
+
+Copy the config file to the `~/.config/gh` directory.
+
+```bash
+cp .config/gh/config.yml ~/.config/gh/
+```
+
 ### Git
 
 Install ctags so the included hooks can generate ctags automatically on different git actions.
