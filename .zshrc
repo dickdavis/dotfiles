@@ -73,6 +73,8 @@ ENABLE_CORRECTION="true"
 plugins=(git asdf)
 
 source $ZSH/oh-my-zsh.sh
+source ~/.zsh_aliases
+source ~/.zsh_secrets
 
 # User configuration
 
@@ -82,9 +84,7 @@ source $ZSH/oh-my-zsh.sh
 export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
-fi
+export EDITOR='nvim'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -98,5 +98,6 @@ fi
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# heroku autocomplete setup
-HEROKU_AC_ZSH_SETUP_PATH=/Users/dick/Library/Caches/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
+. "$HOME/.asdf/asdf.sh"
+export ASDF_DATA_DIR="/Users/dickdavis/.asdf"
+export PATH="$ASDF_DATA_DIR/shims:$PATH"
