@@ -190,7 +190,23 @@ cp .config/gh/config.yml ~/.config/gh/
 
 ### Git
 
-Install ctags so the included hooks can generate ctags automatically on different git actions.
+Copy the git configuration file to your home directory.
+
+```bash
+cp .gitconfig ~/.gitconfig
+```
+
+Modify the `~/.gitconfig` to contain the email you wish to globally configure.
+
+Copy the git template directory to your home directory.
+
+```bash
+cp -r .git_template ~/.git_template
+```
+
+The `.git_template` directory contains git hooks that automatically generate ctags when you perform git actions like commit, checkout, merge, and rebase. This helps with code navigation in editors that support ctags.
+
+Install `ctags` so the included hooks can generate ctags automatically on different git actions.
 
 ```bash
 brew install ctags
