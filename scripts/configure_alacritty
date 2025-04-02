@@ -1,0 +1,39 @@
+#!/bin/bash
+
+# Script to install and configure Alacritty
+# This script handles both initial setup and configuration updates
+
+set -e # Exit on any error
+
+echo "Starting Alacritty installation and configuration..."
+
+# Install Alacritty if not already installed
+if ! command -v alacritty &> /dev/null; then
+    echo "Installing Alacritty..."
+    brew install --cask alacritty --no-quarantine
+else
+    echo "Alacritty is already installed."
+fi
+
+# Create config directory if it doesn't exist
+if [ ! -d "$HOME/.config/alacritty" ]; then
+    echo "Creating Alacritty config directory..."
+    mkdir -p "$HOME/.config/alacritty"
+else
+    echo "Alacritty config directory already exists."
+fi
+
+# Copy the config file (always update it)
+echo "Updating Alacritty configuration file..."
+cp "$(dirname "$(dirname "$0")")/templates/.config/alacritty/alacritty.toml" "$HOME/.config/alacritty/alacritty.toml"
+echo "Alacritty configuration updated successfully."
+
+# Print information about the font installation
+echo ""
+echo "MANUAL ACTION REQUIRED:"
+echo "------------------------"
+echo "Please install the Fira Code Nerd Font:"
+echo "1. Download from: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/FiraCode.zip"
+echo "2. Install the font by following instructions at: https://support.apple.com/guide/font-book/install-and-validate-fonts-fntbk1000/mac"
+echo ""
+echo "Alacritty setup is now complete."

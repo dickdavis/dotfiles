@@ -1,0 +1,68 @@
+#!/bin/bash
+
+# Script to install and configure tmux
+# This script handles both initial setup and configuration updates
+
+set -e # Exit on any error
+
+echo "Starting tmux installation and configuration..."
+
+# Install tmux if not already installed
+if ! command -v tmux &> /dev/null; then
+    echo "Installing tmux..."
+    brew install tmux
+else
+    echo "tmux is already installed."
+fi
+
+# Create config directory if it doesn't exist
+if [ ! -d "$HOME/.config/tmux" ]; then
+    echo "Creating tmux config directory..."
+    mkdir -p "$HOME/.config/tmux"
+else
+    echo "tmux config directory already exists."
+fi
+
+# Copy the config file
+echo "Updating tmux configuration file..."
+DOTFILES_DIR="$(dirname "$(dirname "$0")")"
+cp "$DOTFILES_DIR/templates/.config/tmux/tmux.conf" "$HOME/.config/tmux/tmux.conf"
+
+# Install tmux package manager if not already installed
+if [ ! -d "$HOME/.config/tmux/plugins/tpm" ]; then
+    echo "Installing tmux package manager (TPM)..."
+    git clone https://github.com/tmux-plugins/tpm "$HOME/.config/tmux/plugins/tpm"
+else
+    echo "tmux package manager is already installed."
+    # Update TPM
+    echo "Updating tmux package manager..."
+    ( cd "$HOME/.config/tmux/plugins/tpm" && git pull )
+fi
+
+# Source the tmux configuration file if tmux is running
+if tmux info &> /dev/null; then
+    echo "Reloading tmux configuration..."
+    tmux source-file "$HOME/.config/tmux/tmux.conf"
+else
+    echo "tmux is not currently running. Configuration will be applied on next start."
+fi
+
+echo "tmux configuration updated successfully."
+
+# Print information about plugin installation
+echo ""
+echo "MANUAL ACTION REQUIRED:"
+echo "------------------------"
+echo "To install tmux plugins:"
+echo ""
+echo "1. Start a tmux session if one is not already running:"
+echo "   $ tmux"
+echo ""
+echo "2. Press the prefix key combination followed by 'I' (capital i):"
+echo "   prefix + I"
+echo "   (default prefix is typically Ctrl+b, but check your tmux.conf for custom settings)"
+echo ""
+echo "3. The plugin installation process will start in the background."
+echo "   You'll see a message in the status line when it's complete."
+echo ""
+echo "tmux setup is now complete."
