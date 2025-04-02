@@ -40,13 +40,17 @@ fi
 
 # Copy the configuration files
 echo "Updating asdf configuration files..."
-DOTFILES_DIR="$(dirname "$(dirname "$0")")"
+# Get absolute path to dotfiles directory
+SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)
+DOTFILES_DIR=$(cd "$SCRIPT_DIR/.." && pwd)
+echo "Using dotfiles directory: $DOTFILES_DIR"
 
 # Copy .asdfrc to config directory
 cp "$DOTFILES_DIR/templates/.config/asdf/.asdfrc" "$HOME/.config/asdf/.asdfrc"
 
 # Copy tool-versions file to home directory
-cp "$DOTFILES_DIR/templates/.tool_versions" "$HOME/.tool-versions"
+echo "Copying .tool-versions file to home directory..."
+cp "$DOTFILES_DIR/templates/.tool-versions" "$HOME/.tool-versions"
 
 # Install plugins if they don't exist
 echo "Checking and installing asdf plugins..."
