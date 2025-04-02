@@ -1,0 +1,55 @@
+#!/bin/bash
+
+# Script to install and configure tmuxinator
+# This script handles both initial setup and configuration updates
+
+set -e # Exit on any error
+
+echo "Starting tmuxinator installation and configuration..."
+
+# Check if Ruby is installed (required for gem)
+if ! command -v ruby &> /dev/null; then
+    echo "Ruby is required but not installed. Please install Ruby first."
+    echo "You can use asdf or run the configure_asdf script."
+    exit 1
+fi
+
+# Install tmuxinator if not already installed
+if ! command -v tmuxinator &> /dev/null; then
+    echo "Installing tmuxinator..."
+    gem install tmuxinator
+else
+    echo "tmuxinator is already installed."
+fi
+
+# Create config directory if it doesn't exist
+if [ ! -d "$HOME/.config/tmuxinator" ]; then
+    echo "Creating tmuxinator config directory..."
+    mkdir -p "$HOME/.config/tmuxinator"
+else
+    echo "tmuxinator config directory already exists."
+fi
+
+# Copy the example templates
+echo "Copying tmuxinator templates..."
+DOTFILES_DIR="$(dirname "$(dirname "$0")")"
+cp -r "$DOTFILES_DIR/templates/.config/tmuxinator/"* "$HOME/.config/tmuxinator/"
+
+echo "tmuxinator configuration completed successfully."
+echo ""
+echo "USAGE INFORMATION:"
+echo "-----------------"
+echo "Create new project layouts based on the examples:"
+echo "  $ tmuxinator copy example-rails my-project-name"
+echo "  $ tmuxinator copy example-ruby my-ruby-project"
+echo ""
+echo "Edit a project layout:"
+echo "  $ tmuxinator edit my-project-name"
+echo ""
+echo "Start a tmuxinator session:"
+echo "  $ tmuxinator start my-project-name"
+echo ""
+echo "List available project layouts:"
+echo "  $ tmuxinator list"
+echo ""
+echo "tmuxinator setup is now complete."
