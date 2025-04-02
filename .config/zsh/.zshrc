@@ -103,6 +103,8 @@ export EDITOR='nvim'
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-. "$HOME/.asdf/asdf.sh"
-export ASDF_DATA_DIR="/Users/dickdavis/.asdf"
-export PATH="$ASDF_DATA_DIR/shims:$PATH"
+# asdf is loaded via the oh-my-zsh asdf plugin (plugins=(git asdf))
+# The plugin automatically:
+# 1. Uses ASDF_DATA_DIR from .zshenv
+# 2. Adds shims to PATH
+# 3. Sources asdf.sh and completions
