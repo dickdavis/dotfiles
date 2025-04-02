@@ -26,6 +26,7 @@ Follow instructions for each tool to get started.
 - [asdf](#asdf)
 - [tmux](#tmux)
 - [tmuxinator](#tmuxinator)
+- [tmate](#tmate)
 - [neovim](#neovim)
 - [Github CLI](#github-cli)
 - [git](#git)
@@ -233,6 +234,26 @@ cp -r templates/.config/tmuxinator/* ~/.config/tmuxinator
 ```
 
 Copy the example layouts and modify as necessary per project.
+
+---
+
+### tmate
+
+#### Manual instructions
+
+Install `tmate`.
+
+```bash
+brew install tmate
+```
+
+Copy the config file to the home directory.
+
+```bash
+cp templates/.config/tmate/tmate.conf ~/.config/tmate/tmate.conf
+```
+
+---
 
 ### neovim
 

@@ -1,0 +1,44 @@
+#!/bin/bash
+
+# Script to install and configure tmate
+# This script handles both initial setup and configuration updates
+
+set -e # Exit on any error
+
+echo "Starting tmate installation and configuration..."
+
+# Install tmate if not already installed
+if ! command -v tmate &> /dev/null; then
+    echo "Installing tmate..."
+    brew install tmate
+else
+    echo "tmate is already installed."
+fi
+
+# Create config directory if it doesn't exist
+if [ ! -d "$HOME/.config/tmate" ]; then
+    echo "Creating tmate config directory..."
+    mkdir -p "$HOME/.config/tmate"
+else
+    echo "tmate config directory already exists."
+fi
+
+# Copy the config file
+echo "Updating tmate configuration file..."
+DOTFILES_DIR="$(dirname "$(dirname "$0")")"
+cp "$DOTFILES_DIR/templates/.config/tmate/tmate.conf" "$HOME/.config/tmate/tmate.conf"
+
+echo "tmate configuration completed successfully."
+echo ""
+echo "USAGE INFORMATION:"
+echo "-----------------"
+echo "Start a new tmate session:"
+echo "  $ tmate"
+echo ""
+echo "Show the SSH connection string to share with others:"
+echo "  $ tmate show-messages"
+echo ""
+echo "Set a custom session name:"
+echo "  $ tmate -S /tmp/my-session-name"
+echo ""
+echo "tmate setup is now complete."
