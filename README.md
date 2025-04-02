@@ -20,20 +20,20 @@ mkdir ~/.config
 
 Follow instructions for each tool to get started.
 
-- [homebrew](#homebrew)
-- [alacritty](#alacritty)
-- [zsh](#zsh)
-- [asdf](#asdf)
-- [tmux](#tmux)
-- [tmuxinator](#tmuxinator)
-- [tmate](#tmate)
-- [neovim](#neovim)
-- [Github CLI](#github-cli)
-- [git](#git)
-- [Claude Code](#claude-code)
-- [Claude Desktop](#claude-desktop)
-- [Dash](#dash)
-- [Docker](#docker)
+- [homebrew](#homebrew): package management
+- [alacritty](#alacritty): terminal emulator
+- [zsh](#zsh): shell
+- [asdf](#asdf): version management for programming languages
+- [tmux](#tmux): terminal multiplexing
+- [tmuxinator](#tmuxinator): managing tmux layouts
+- [tmate](#tmate): pair-programming over ssh
+- [neovim](#neovim): text editor
+- [git](#git): version control
+- [Github CLI](#github-cli): interacting with Github via CLI
+- [Claude Code](#claude-code): using Claude within a terminal
+- [Claude Desktop](#claude-desktop): using Claude via app
+- [Dash](#dash): documentation tool
+- [Docker](#docker): building and running containers
 
 ---
 
@@ -289,6 +289,54 @@ Also, you should ensure that `ruby-lsp` and `standardrb` gems are installed.
 
 ---
 
+### git
+
+Run the `scripts/configure_git` script to install and configure `git`. This will prompt for your name and email for Git configuration.
+
+```bash
+./scripts/configure_git
+```
+
+Or provide your name and email as command-line arguments:
+
+```bash
+./scripts/configure_git -n "Your Name" -e "your.email@example.com"
+```
+
+#### Manual instructions
+
+Install `ctags` for the git hooks:
+
+```bash
+brew install ctags
+```
+
+Create a git template directory in your home directory:
+
+```bash
+mkdir -p ~/.git_template
+cp -r templates/.git_template/ ~/.git_template/
+chmod +x ~/.git_template/hooks/*
+```
+
+Configure git:
+
+```bash
+# Set your git user information
+git config --global user.name "Your Name"
+git config --global user.email "your.email@example.com"
+
+# Set the git template directory
+git config --global init.templatedir ~/.git_template
+
+# Set up tracking with remote
+git config --global push.autoSetupRemote true
+```
+
+The `.git_template` directory contains git hooks that automatically generate ctags when you perform git actions like commit, checkout, merge, and rebase. This helps with code navigation in editors that support ctags.
+
+---
+
 ### Github CLI
 
 Run the `scripts/configure_gh` script to install and configure `gh` CLI. This will also setup an SSH key for the machine and add it to your Github account.
@@ -342,54 +390,6 @@ Copy the config file to the `~/.config/gh` directory.
 ```bash
 cp templates/.config/gh/config.yml ~/.config/gh/config.yml
 ```
-
----
-
-### git
-
-Run the `scripts/configure_git` script to install and configure `git`. This will prompt for your name and email for Git configuration.
-
-```bash
-./scripts/configure_git
-```
-
-Or provide your name and email as command-line arguments:
-
-```bash
-./scripts/configure_git -n "Your Name" -e "your.email@example.com"
-```
-
-#### Manual instructions
-
-Install `ctags` for the git hooks:
-
-```bash
-brew install ctags
-```
-
-Create a git template directory in your home directory:
-
-```bash
-mkdir -p ~/.git_template
-cp -r templates/.git_template/ ~/.git_template/
-chmod +x ~/.git_template/hooks/*
-```
-
-Configure git:
-
-```bash
-# Set your git user information
-git config --global user.name "Your Name"
-git config --global user.email "your.email@example.com"
-
-# Set the git template directory
-git config --global init.templatedir ~/.git_template
-
-# Set up tracking with remote
-git config --global push.autoSetupRemote true
-```
-
-The `.git_template` directory contains git hooks that automatically generate ctags when you perform git actions like commit, checkout, merge, and rebase. This helps with code navigation in editors that support ctags.
 
 ---
 
