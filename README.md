@@ -22,6 +22,7 @@ Follow instructions for each tool to get started.
 
 - [Alacritty](#alacritty)
 - [Zsh](#zsh)
+- [asdf](#asdf)
 - [Tmux](#tmux)
 - [Neovim](#neovim)
 - [Github CLI](#github-cli)
@@ -82,6 +83,58 @@ cp .zshenv ~/.zshenv
 ```
 
 Follow the instructions [here](https://draculatheme.com/zsh) to install the dracula theme manually.
+
+### asdf
+
+Install `asdf`.
+
+```bash
+brew install coreutils git
+brew install asdf
+```
+
+Set up asdf to use XDG directories:
+
+```bash
+# Create directories according to XDG Base Directory spec
+mkdir -p ~/.config/asdf
+mkdir -p ~/.local/share/asdf
+
+# Copy the configuration file
+cp .config/asdf/.asdfrc ~/.config/asdf/
+
+# Copy the tool versions file
+cp .tool_versions ~/.tool_versions
+```
+
+Install the asdf plugins for default languages, and install the default versions specified in `.tool_versions`:
+
+```bash
+# Install ruby plugin
+asdf plugin add ruby
+
+# Install nodejs plugin (includes keyring setup for Node.js)
+asdf plugin add nodejs
+
+# Install java plugin
+asdf plugin add java
+
+# Install lua plugin
+asdf plugin add lua
+
+# Install elixir plugin
+asdf plugin add elixir
+
+# Install golang plugin
+asdf plugin add golang
+
+# Install python plugin
+asdf plugin add python
+
+# Install the versions specified in .tool_versions
+asdf install
+```
+
 
 ### Tmux
 
