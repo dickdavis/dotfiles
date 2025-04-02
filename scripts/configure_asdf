@@ -52,6 +52,10 @@ cp "$DOTFILES_DIR/templates/.config/asdf/.asdfrc" "$HOME/.config/asdf/.asdfrc"
 echo "Copying .tool-versions file to home directory..."
 cp "$DOTFILES_DIR/templates/.tool-versions" "$HOME/.tool-versions"
 
+# Copy default-gems file to home directory
+echo "Copying .default-gems file to home directory..."
+cp "$DOTFILES_DIR/templates/.default-gems" "$HOME/.default-gems"
+
 # Install plugins if they don't exist
 echo "Checking and installing asdf plugins..."
 
