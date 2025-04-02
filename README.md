@@ -239,6 +239,8 @@ Copy the example layouts and modify as necessary per project.
 
 ### tmate
 
+Run the `scripts/configure_tmate` script to install and configure `tmate`.
+
 #### Manual instructions
 
 Install `tmate`.
