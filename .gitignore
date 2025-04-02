@@ -1,0 +1,3 @@
+# Ignore all generated docsets
+cheatsheets/*.docset/**
+.DS_Store
