@@ -20,19 +20,34 @@ mkdir ~/.config
 
 Follow instructions for each tool to get started.
 
-- [Alacritty](#alacritty)
-- [Zsh](#zsh)
+- [homebrew](#homebrew)
+- [alacritty](#alacritty)
+- [zsh](#zsh)
 - [asdf](#asdf)
-- [Tmux](#tmux)
-- [Neovim](#neovim)
+- [tmux](#tmux)
+- [neovim](#neovim)
 - [Github CLI](#github-cli)
-- [Git](#git)
+- [git](#git)
+- [Claude Code](#claude-code)
+- [Claude Desktop](#claude-desktop)
 - [Dash](#dash)
 - [Docker](#docker)
 
-### Alacritty
+---
 
-Install alacritty.
+### homebrew
+
+Install `homebrew`.
+
+```bash
+/bin/zsh -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+---
+
+### alacritty
+
+Install `alacritty`.
 
 ```bash
 brew install --cask alacritty --no-quarantine
@@ -50,7 +65,9 @@ Copy the config file to the `~/.config/alacritty` directory.
 cp .config/alacritty/alacritty.toml ~/.config/alacritty/
 ```
 
-### Zsh
+---
+
+### zsh
 
 Download and run the `ohmyzsh` script.
 
@@ -83,6 +100,8 @@ cp .zshenv ~/.zshenv
 ```
 
 Follow the instructions [here](https://draculatheme.com/zsh) to install the dracula theme manually.
+
+---
 
 ### asdf
 
@@ -135,8 +154,9 @@ asdf plugin add python
 asdf install
 ```
 
+---
 
-### Tmux
+### tmux
 
 Install `tmux`.
 
@@ -170,7 +190,9 @@ tmux source ~/.config/tmux/tmux.conf
 
 Install the plugins by pressing `prefix` + `I`.
 
-### Neovim
+---
+
+### neovim
 
 Install `neovim`.
 
@@ -195,6 +217,8 @@ Run `:Lazy install` to install the plugins.
 You will need to authenticate with `:Codeium Auth` to use the `codeium.vim` plugin.
 
 Also, you should ensure that `ruby-lsp` and `standardrb` gems are installed.
+
+---
 
 ### Github CLI
 
@@ -250,7 +274,9 @@ Copy the config file to the `~/.config/gh` directory.
 cp .config/gh/config.yml ~/.config/gh/
 ```
 
-### Git
+---
+
+### git
 
 Copy the git configuration file to your home directory.
 
@@ -274,22 +300,49 @@ Install `ctags` so the included hooks can generate ctags automatically on differ
 brew install ctags
 ```
 
+---
+
+### Claude Code
+
+Install the `claude-code` npm package.
+
+```bash
+npm install -g @anthropic-ai/claude-code
+```
+
+Enable vim keybindings with the `/vim` slash command.
+
+Add a local MCP server (example):
+
+```bash
+claude mcp add my-server -- /path/to/server
+```
+
+---
+
+### Claude Desktop
+
+Install Claude Desktop by downloading it from the [official website](https://claude.ai/download).
+
+Add a local MCP server by following the [official instructions](https://modelcontextprotocol.io/quickstart/user).
+
+---
+
 ### Dash
 
 Install Dash by downloading it from the [official website](https://kapeli.com/dash) and then applying the license file.
 
 Download the following docsets by usings the Dash > Settings > Downloads interface:
 
-* Ruby 3
-* Ruby on Rails 7
-* Sass
-* Vim
+* Ruby
+* Ruby on Rails
 * Redis
-* React
 * PostgreSQL
 * JavaScript
-* Apple API Reference
 * C
+* Python
+* Elixir
+* Golang
 * Common Lisp
 * Font Awesome
 * Git
@@ -297,6 +350,10 @@ Download the following docsets by usings the Dash > Settings > Downloads interfa
 * Rspec Expectations
 * Rails Migrations CLI
 
+Generate and install the cheatsheets located in the `cheatsheets/` directory.
+
+---
+
 ### Docker
 
-Install Docker by downloading it from the [official website](https://docs.docker.com/get-started/get-docker/)
+Install Docker by downloading it from the [official website](https://docs.docker.com/get-started/get-docker/).
