@@ -1,4 +1,4 @@
-# /Users/dickdavis/.config/tmuxinator/na-app.yml
+# /Users/dickdavis/.config/tmuxinator/example-ruby.yml
 
 name: example-ruby
 root: ~/workspace
