@@ -65,6 +65,8 @@ Copy the config file to the `~/.config/alacritty` directory.
 cp .config/alacritty/alacritty.toml ~/.config/alacritty/
 ```
 
+Install the Fire Code Nerd font by [downloading](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/FiraCode.zip) the font and [installing](https://support.apple.com/guide/font-book/install-and-validate-fonts-fntbk1000/mac) it.
+
 ---
 
 ### zsh
