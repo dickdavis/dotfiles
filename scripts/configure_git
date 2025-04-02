@@ -1,0 +1,78 @@
+#!/bin/bash
+
+# Script to install and configure git
+# This script handles both initial setup and configuration updates
+
+set -e # Exit on any error
+
+# Get user name and email for git configuration
+name=""
+email=""
+
+# Process command line arguments
+while getopts "n:e:" opt; do
+  case $opt in
+    n) name="$OPTARG" ;;
+    e) email="$OPTARG" ;;
+    *) echo "Usage: $0 -n 'Your Name' -e 'your.email@example.com'" >&2
+       exit 1 ;;
+  esac
+done
+
+# Prompt for name and email if not provided as arguments
+if [ -z "$name" ]; then
+    read -p "Enter your name for git config: " name
+fi
+
+if [ -z "$email" ]; then
+    read -p "Enter your email for git config: " email
+fi
+
+# Validate inputs
+if [ -z "$name" ] || [ -z "$email" ]; then
+    echo "Error: Name and email are required."
+    echo "Usage: $0 -n 'Your Name' -e 'your.email@example.com'"
+    exit 1
+fi
+
+echo "Starting git configuration..."
+
+# Install ctags if not already installed
+if ! command -v ctags &> /dev/null; then
+    echo "Installing ctags..."
+    brew install ctags
+else
+    echo "ctags is already installed."
+fi
+
+# Create git template directory if it doesn't exist
+if [ ! -d "$HOME/.git_template" ]; then
+    echo "Creating git template directory..."
+    mkdir -p "$HOME/.git_template"
+else
+    echo "git template directory already exists."
+fi
+
+# Copy the git template directory contents
+echo "Updating git template files..."
+DOTFILES_DIR="$(dirname "$(dirname "$0")")"
+cp -r "$DOTFILES_DIR/templates/.git_template/" "$HOME/.git_template/"
+
+# Make hook scripts executable
+if [ -d "$HOME/.git_template/hooks" ]; then
+    echo "Making git hooks executable..."
+    chmod +x "$HOME/.git_template/hooks/"*
+fi
+
+# Create .gitconfig file with user's name and email
+echo "Creating git configuration file with your information..."
+cat > "$HOME/.gitconfig" << EOF
+[init]
+  templatedir = ~/.git_template
+[user]
+  name = $name
+  email = $email
+EOF
+
+echo "git configuration completed successfully."
+echo "Your git identity is set to: $name <$email>"

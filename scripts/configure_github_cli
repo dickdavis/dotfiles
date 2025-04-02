@@ -1,0 +1,94 @@
+#!/bin/bash
+
+# Script to install and configure GitHub CLI (gh)
+# This script handles both initial setup and configuration updates
+
+set -e # Exit on any error
+
+echo "Starting GitHub CLI installation and configuration..."
+
+# Install GitHub CLI if not already installed
+if ! command -v gh &> /dev/null; then
+    echo "Installing GitHub CLI..."
+    brew install gh
+else
+    echo "GitHub CLI is already installed."
+fi
+
+# Create .config/gh directory if it doesn't exist
+if [ ! -d "$HOME/.config/gh" ]; then
+    echo "Creating GitHub CLI config directory..."
+    mkdir -p "$HOME/.config/gh"
+else
+    echo "GitHub CLI config directory already exists."
+fi
+
+# Create .ssh directory if it doesn't exist
+if [ ! -d "$HOME/.ssh" ]; then
+    echo "Creating SSH directory..."
+    mkdir -p "$HOME/.ssh"
+    chmod 700 "$HOME/.ssh"
+else
+    echo "SSH directory already exists."
+fi
+
+# Copy the SSH config file if it doesn't exist
+DOTFILES_DIR="$(dirname "$(dirname "$0")")"
+if [ ! -f "$HOME/.ssh/config" ]; then
+    echo "Copying SSH config file..."
+    cp "$DOTFILES_DIR/templates/.ssh/config" "$HOME/.ssh/config"
+    chmod 600 "$HOME/.ssh/config"
+else
+    echo "SSH config file already exists. Not overwriting."
+fi
+
+# Check if GitHub CLI is authenticated
+if ! gh auth status &> /dev/null; then
+    echo "GitHub CLI is not authenticated yet."
+    echo "Please run the following command to login:"
+    echo "  gh auth login"
+else
+    echo "GitHub CLI is already authenticated."
+fi
+
+# Check if SSH key exists
+if [ ! -f "$HOME/.ssh/id_ed25519" ]; then
+    echo "SSH key not found. Starting SSH key generation..."
+    echo "Please enter your email for the SSH key (or press Enter to skip key generation):"
+    read -r email
+    
+    if [ -n "$email" ]; then
+        # Generate SSH key
+        ssh-keygen -t ed25519 -C "$email"
+        
+        # Start SSH agent
+        eval "$(ssh-agent -s)"
+        
+        # Add key to SSH agent
+        ssh-add --apple-use-keychain "$HOME/.ssh/id_ed25519"
+        
+        # Add key to GitHub account if authenticated
+        if gh auth status &> /dev/null; then
+            echo "Adding SSH key to GitHub account..."
+            gh ssh-key add "$HOME/.ssh/id_ed25519.pub" --title "$(hostname)" --type authentication
+        else
+            echo "GitHub CLI not authenticated. Please login with 'gh auth login' and then add your SSH key with:"
+            echo "  gh ssh-key add ~/.ssh/id_ed25519.pub --title \"$(hostname)\" --type authentication"
+        fi
+    else
+        echo "Skipping SSH key generation."
+    fi
+else
+    echo "SSH key already exists."
+fi
+
+# Copy GitHub CLI config
+if [ -f "$DOTFILES_DIR/templates/.config/gh/config.yml" ]; then
+    echo "Updating GitHub CLI configuration..."
+    cp "$DOTFILES_DIR/templates/.config/gh/config.yml" "$HOME/.config/gh/config.yml"
+    echo "GitHub CLI configuration updated."
+else
+    echo "GitHub CLI config template not found."
+fi
+
+echo "GitHub CLI configuration completed successfully."

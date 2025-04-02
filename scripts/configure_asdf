@@ -1,0 +1,70 @@
+#!/bin/bash
+
+# Script to install and configure asdf version manager
+# This script handles both initial setup and configuration updates
+
+set -e # Exit on any error
+
+echo "Starting asdf installation and configuration..."
+
+# Install prerequisites if not already installed
+if ! command -v git &> /dev/null || ! command -v coreutils &> /dev/null; then
+    echo "Installing prerequisites (coreutils and git)..."
+    brew install coreutils git
+else
+    echo "Prerequisites are already installed."
+fi
+
+# Install asdf if not already installed
+if ! command -v asdf &> /dev/null; then
+    echo "Installing asdf..."
+    brew install asdf
+else
+    echo "asdf is already installed."
+fi
+
+# Create config directories if they don't exist
+if [ ! -d "$HOME/.config/asdf" ]; then
+    echo "Creating asdf config directory..."
+    mkdir -p "$HOME/.config/asdf"
+else
+    echo "asdf config directory already exists."
+fi
+
+if [ ! -d "$HOME/.local/share/asdf" ]; then
+    echo "Creating asdf data directory..."
+    mkdir -p "$HOME/.local/share/asdf"
+else
+    echo "asdf data directory already exists."
+fi
+
+# Copy the configuration files
+echo "Updating asdf configuration files..."
+DOTFILES_DIR="$(dirname "$(dirname "$0")")"
+
+# Copy .asdfrc to config directory
+cp "$DOTFILES_DIR/templates/.config/asdf/.asdfrc" "$HOME/.config/asdf/.asdfrc"
+
+# Copy tool-versions file to home directory
+cp "$DOTFILES_DIR/templates/.tool_versions" "$HOME/.tool-versions"
+
+# Install plugins if they don't exist
+echo "Checking and installing asdf plugins..."
+
+# List of plugins to install
+PLUGINS=("ruby" "nodejs" "java" "lua" "elixir" "golang" "python")
+
+for plugin in "${PLUGINS[@]}"; do
+    if ! asdf plugin list | grep -q "^$plugin$"; then
+        echo "Installing $plugin plugin..."
+        asdf plugin add "$plugin"
+    else
+        echo "$plugin plugin is already installed."
+    fi
+done
+
+# Install versions specified in .tool-versions
+echo "Installing tool versions specified in .tool-versions..."
+asdf install
+
+echo "asdf installation and configuration completed successfully."

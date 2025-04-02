@@ -47,6 +47,10 @@ Install `homebrew`.
 
 ### alacritty
 
+Run the `scripts/configure_alacritty` script to install and configure `alacritty`. Ensure you install the font manually after the script completes.
+
+#### Manual instructions
+
 Install `alacritty`.
 
 ```bash
@@ -62,7 +66,7 @@ mkdir ~/.config/alacritty
 Copy the config file to the `~/.config/alacritty` directory.
 
 ```bash
-cp .config/alacritty/alacritty.toml ~/.config/alacritty/
+cp templates/.config/alacritty/alacritty.toml ~/.config/alacritty/alacritty.toml
 ```
 
 Install the Fire Code Nerd font by [downloading](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/FiraCode.zip) the font and [installing](https://support.apple.com/guide/font-book/install-and-validate-fonts-fntbk1000/mac) it.
@@ -70,6 +74,10 @@ Install the Fire Code Nerd font by [downloading](https://github.com/ryanoasis/ne
 ---
 
 ### zsh
+
+Run the `scripts/configure_zsh` script to install and configure `zsh`. Ensure you install the dracula theme manually after the script completes.
+
+#### Manual instructions
 
 Download and run the `ohmyzsh` script.
 
@@ -92,13 +100,13 @@ mv ~/.oh-my-zsh ~/.config/zsh/.oh-my-zsh
 Copy the config files over to the zsh config directory.
 
 ```bash
-cp -r .config/zsh/ ~/.config/zsh/
+cp -r templates/.config/zsh/ ~/.config/zsh/
 ```
 
 Copy the `.zshenv` file to your home directory.
 
 ```bash
-cp .zshenv ~/.zshenv
+cp templates/.zshenv ~/.zshenv
 ```
 
 Follow the instructions [here](https://draculatheme.com/zsh) to install the dracula theme manually.
@@ -106,6 +114,10 @@ Follow the instructions [here](https://draculatheme.com/zsh) to install the drac
 ---
 
 ### asdf
+
+Run the `scripts/configure_asdf` script to install and configure `asdf`.
+
+#### Manual instructions
 
 Install `asdf`.
 
@@ -122,10 +134,13 @@ mkdir -p ~/.config/asdf
 mkdir -p ~/.local/share/asdf
 
 # Copy the configuration file
-cp .config/asdf/.asdfrc ~/.config/asdf/
+cp templates/.config/asdf/.asdfrc ~/.config/asdf/.asdfrc
 
 # Copy the tool versions file
-cp .tool_versions ~/.tool_versions
+cp templates/.tool_versions ~/.tool-versions
+
+# Copy the .default-gems file
+cp templates/.default-gems ~/.default-gems
 ```
 
 Install the asdf plugins for default languages, and install the default versions specified in `.tool_versions`:
@@ -160,6 +175,10 @@ asdf install
 
 ### tmux
 
+Run the `scripts/configure_tmux` script to install and configure `tmux`. Ensure you manually install the plugins after the script completes.
+
+#### Manual instructions
+
 Install `tmux`.
 
 ```bash
@@ -175,7 +194,7 @@ mkdir ~/.config/tmux
 Copy the config file to the `~/.config/tmux` directory.
 
 ```bash
-cp .config/tmux/tmux.conf ~/.config/tmux/
+cp templates/.config/tmux/tmux.conf ~/.config/tmux/tmux.conf
 ```
 
 Install the tmux package manager.
@@ -196,6 +215,10 @@ Install the plugins by pressing `prefix` + `I`.
 
 ### neovim
 
+Run the `scripts/configure_neovim` script to install and configure `neovim`. Ensure you install the plugins after the script completes.
+
+#### Manual instructions
+
 Install `neovim`.
 
 ```bash
@@ -211,7 +234,7 @@ mkdir ~/.config/nvim
 Copy `.config/nvim` to the `~/.config/nvim` directory.
 
 ```bash
-cp -r .config/nvim/ ~/.config/nvim
+cp -r templates/.config/nvim/ ~/.config/nvim
 ```
 
 Run `:Lazy install` to install the plugins.
@@ -223,6 +246,10 @@ Also, you should ensure that `ruby-lsp` and `standardrb` gems are installed.
 ---
 
 ### Github CLI
+
+Run the `scripts/configure_gh` script to install and configure `gh` CLI. This will also setup an SSH key for the machine and add it to your Github account.
+
+#### Manual instructions
 
 Install the `gh` CLI.
 
@@ -248,14 +275,10 @@ Start the SSH agent.
 eval "$(ssh-agent -s)"
 ```
 
-Configure the SSH agent to load keys and store passphrases in the keychain.
+Copy the config file to the `~/.ssh` directory.
 
 ```bash
-# ~/.ssh/config
-Host *
-  AddKeysToAgent yes
-  UseKeychain yes
-  IdentityFile ~/.ssh/id_ed25519
+cp templates/.ssh/config ~/.ssh/config
 ```
 
 Add the key to the SSH agent.
@@ -273,34 +296,53 @@ gh ssh-key add ~/.ssh/id_ed25519.pub --title "$(hostname)" --type authentication
 Copy the config file to the `~/.config/gh` directory.
 
 ```bash
-cp .config/gh/config.yml ~/.config/gh/
+cp templates/.config/gh/config.yml ~/.config/gh/config.yml
 ```
 
 ---
 
 ### git
 
-Copy the git configuration file to your home directory.
+Run the `scripts/configure_git` script to install and configure `git`. This will prompt for your name and email for Git configuration.
 
 ```bash
-cp .gitconfig ~/.gitconfig
+./scripts/configure_git
 ```
 
-Modify the `~/.gitconfig` to contain the email you wish to globally configure.
-
-Copy the git template directory to your home directory.
+Or provide your name and email as command-line arguments:
 
 ```bash
-cp -r .git_template ~/.git_template
+./scripts/configure_git -n "Your Name" -e "your.email@example.com"
 ```
 
-The `.git_template` directory contains git hooks that automatically generate ctags when you perform git actions like commit, checkout, merge, and rebase. This helps with code navigation in editors that support ctags.
+#### Manual instructions
 
-Install `ctags` so the included hooks can generate ctags automatically on different git actions.
+Install `ctags` for the git hooks:
 
 ```bash
 brew install ctags
 ```
+
+Create a git template directory in your home directory:
+
+```bash
+mkdir -p ~/.git_template
+cp -r templates/.git_template/ ~/.git_template/
+chmod +x ~/.git_template/hooks/*
+```
+
+Configure git:
+
+```bash
+# Set your git user information
+git config --global user.name "Your Name"
+git config --global user.email "your.email@example.com"
+
+# Set the git template directory
+git config --global init.templatedir ~/.git_template
+```
+
+The `.git_template` directory contains git hooks that automatically generate ctags when you perform git actions like commit, checkout, merge, and rebase. This helps with code navigation in editors that support ctags.
 
 ---
 
@@ -352,7 +394,7 @@ Download the following docsets by usings the Dash > Settings > Downloads interfa
 * Rspec Expectations
 * Rails Migrations CLI
 
-Generate and install the cheatsheets located in the `cheatsheets/` directory.
+Generate and install the cheatsheets located in the `cheatsheets/` directory. Run the `scripts/generate_cheatsheets` script to generate the cheatsheets.
 
 ---
 

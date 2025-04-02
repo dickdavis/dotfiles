@@ -1,0 +1,46 @@
+#!/bin/bash
+
+# Script to install and configure neovim
+# This script handles both initial setup and configuration updates
+
+set -e # Exit on any error
+
+echo "Starting neovim installation and configuration..."
+
+# Install neovim if not already installed
+if ! command -v nvim &> /dev/null; then
+    echo "Installing neovim..."
+    brew install neovim
+else
+    echo "neovim is already installed."
+fi
+
+# Create config directory if it doesn't exist
+if [ ! -d "$HOME/.config/nvim" ]; then
+    echo "Creating neovim config directory..."
+    mkdir -p "$HOME/.config/nvim"
+else
+    echo "neovim config directory already exists."
+fi
+
+# Copy the config files
+echo "Updating neovim configuration files..."
+DOTFILES_DIR="$(dirname "$(dirname "$0")")"
+cp -r "$DOTFILES_DIR/templates/.config/nvim/" "$HOME/.config/nvim"
+
+echo "neovim configuration updated successfully."
+
+# Print information about plugin installation and additional setup
+echo ""
+echo "MANUAL ACTIONS REQUIRED:"
+echo "------------------------"
+echo "1. Install plugins by running:"
+echo "   $ nvim -c \"Lazy install\""
+echo ""
+echo "2. Authenticate with Codeium by running:"
+echo "   $ nvim -c \"Codeium Auth\""
+echo ""
+echo "3. Ensure ruby-lsp and standardrb gems are installed:"
+echo "   $ gem install ruby-lsp standardrb"
+echo ""
+echo "neovim setup is now complete."

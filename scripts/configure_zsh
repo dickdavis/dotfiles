@@ -1,0 +1,70 @@
+#!/bin/bash
+
+# Script to install and configure Zsh with Oh My Zsh
+# This script handles both initial setup and configuration updates
+
+set -e # Exit on any error
+
+echo "Starting Zsh installation and configuration..."
+
+# Check if Oh My Zsh is already installed
+if [ ! -d "$HOME/.oh-my-zsh" ] && [ ! -d "$HOME/.config/zsh/.oh-my-zsh" ]; then
+    echo "Installing Oh My Zsh..."
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+else
+    echo "Oh My Zsh is already installed."
+fi
+
+# Create config directory if it doesn't exist
+if [ ! -d "$HOME/.config/zsh" ]; then
+    echo "Creating Zsh config directory..."
+    mkdir -p "$HOME/.config/zsh"
+else
+    echo "Zsh config directory already exists."
+fi
+
+# Move Oh My Zsh to config directory if needed
+if [ -d "$HOME/.oh-my-zsh" ] && [ ! -d "$HOME/.config/zsh/.oh-my-zsh" ]; then
+    echo "Moving Oh My Zsh to config directory..."
+    mv "$HOME/.oh-my-zsh" "$HOME/.config/zsh/.oh-my-zsh"
+elif [ -d "$HOME/.oh-my-zsh" ] && [ -d "$HOME/.config/zsh/.oh-my-zsh" ]; then
+    echo "Both ~/.oh-my-zsh and ~/.config/zsh/.oh-my-zsh exist. Using the one in ~/.config/zsh/."
+    rm -rf "$HOME/.oh-my-zsh"
+fi
+
+# Copy config files, preserving .zsh_secrets and .zsh_local files
+echo "Updating Zsh configuration files..."
+DOTFILES_DIR="$(dirname "$(dirname "$0")")"
+
+# Copy all files from templates except for .zsh_secrets and .zsh_local
+for file in "$DOTFILES_DIR"/templates/.config/zsh/*; do
+    base_name=$(basename "$file")
+    if [[ "$base_name" != ".zsh_secrets" && "$base_name" != ".zsh_local" ]]; then
+        cp -r "$file" "$HOME/.config/zsh/"
+    fi
+done
+
+# Copy .zsh_secrets and .zsh_local only if they don't exist
+if [ ! -f "$HOME/.config/zsh/.zsh_secrets" ] && [ -f "$DOTFILES_DIR/templates/.config/zsh/.zsh_secrets" ]; then
+    echo "Creating initial .zsh_secrets file..."
+    cp "$DOTFILES_DIR/templates/.config/zsh/.zsh_secrets" "$HOME/.config/zsh/.zsh_secrets"
+fi
+
+if [ ! -f "$HOME/.config/zsh/.zsh_local" ] && [ -f "$DOTFILES_DIR/templates/.config/zsh/.zsh_local" ]; then
+    echo "Creating initial .zsh_local file..."
+    cp "$DOTFILES_DIR/templates/.config/zsh/.zsh_local" "$HOME/.config/zsh/.zsh_local"
+fi
+
+# Copy .zshenv to home directory
+echo "Updating .zshenv file..."
+cp "$DOTFILES_DIR/templates/.zshenv" "$HOME/.zshenv"
+
+echo "Zsh configuration updated successfully."
+
+# Print information about the Dracula theme installation
+echo ""
+echo "MANUAL ACTION REQUIRED:"
+echo "------------------------"
+echo "Please install the Dracula theme for Zsh by following instructions at: https://draculatheme.com/zsh"
+echo ""
+echo "Zsh setup is now complete."

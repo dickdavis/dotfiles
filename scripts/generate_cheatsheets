@@ -1,0 +1,54 @@
+#!/bin/bash
+
+# Script to generate cheatsheets for Dash
+# This script installs the required Ruby version and gems, then generates all cheatsheets
+
+set -e # Exit on any error
+
+echo "Starting cheatsheet generation process..."
+
+# Navigate to the cheatsheets directory
+DOTFILES_DIR="$(dirname "$(dirname "$0")")"
+cd "$DOTFILES_DIR/cheatsheets"
+echo "Changed to cheatsheets directory: $(pwd)"
+
+# Check if asdf is installed
+if ! command -v asdf &> /dev/null; then
+    echo "Error: asdf is not installed. Please install asdf first."
+    echo "Run: ./scripts/configure_asdf"
+    exit 1
+fi
+
+# Install Ruby version from .tool-versions file
+echo "Installing Ruby version specified in .tool-versions..."
+asdf install ruby
+
+# Set local Ruby version
+echo "Setting local Ruby version..."
+asdf local ruby $(grep ruby .tool-versions | cut -d ' ' -f 2)
+
+# Install the cheatset gem if needed
+echo "Installing cheatset gem..."
+if ! gem list | grep -q "cheatset"; then
+    gem install cheatset
+else
+    echo "cheatset gem is already installed."
+fi
+
+# Generate cheatsheets for all Ruby files
+echo "Generating cheatsheets..."
+for cheatsheet in my_*_cheatsheet.rb; do
+    if [ -f "$cheatsheet" ]; then
+        echo "Generating docset for $cheatsheet..."
+        cheatset generate "$cheatsheet"
+    fi
+done
+
+echo "Cheatsheet generation completed successfully."
+echo ""
+echo "MANUAL ACTION REQUIRED:"
+echo "------------------------"
+echo "Load the docsets into Dash by using:"
+echo "Dash > Settings > Docsets > Add local docset interface"
+echo "Navigate to: $DOTFILES_DIR/cheatsheets/"
+echo "Select each *.docset directory to add it to Dash."
