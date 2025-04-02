@@ -340,6 +340,9 @@ git config --global user.email "your.email@example.com"
 
 # Set the git template directory
 git config --global init.templatedir ~/.git_template
+
+# Set up tracking with remote
+git config --global push.autoSetupRemote true
 ```
 
 The `.git_template` directory contains git hooks that automatically generate ctags when you perform git actions like commit, checkout, merge, and rebase. This helps with code navigation in editors that support ctags.

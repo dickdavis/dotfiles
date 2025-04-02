@@ -72,6 +72,8 @@ cat > "$HOME/.gitconfig" << EOF
 [user]
   name = $name
   email = $email
+[push]
+  autoSetupRemote = true
 EOF
 
 echo "git configuration completed successfully."
