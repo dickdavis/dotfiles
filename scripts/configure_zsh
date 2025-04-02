@@ -34,15 +34,21 @@ fi
 
 # Copy config files, preserving .zsh_secrets and .zsh_local files
 echo "Updating Zsh configuration files..."
-DOTFILES_DIR="$(dirname "$(dirname "$0")")"
+# Get absolute path to dotfiles directory
+SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)
+DOTFILES_DIR=$(cd "$SCRIPT_DIR/.." && pwd)
+echo "Using dotfiles directory: $DOTFILES_DIR"
 
 # Copy all files from templates except for .zsh_secrets and .zsh_local
-for file in "$DOTFILES_DIR"/templates/.config/zsh/*; do
+shopt -s dotglob  # Ensure we match hidden files
+for file in "$DOTFILES_DIR/templates/.config/zsh/"*; do
     base_name=$(basename "$file")
     if [[ "$base_name" != ".zsh_secrets" && "$base_name" != ".zsh_local" ]]; then
+        echo "Copying $base_name to ~/.config/zsh/"
         cp -r "$file" "$HOME/.config/zsh/"
     fi
 done
+shopt -u dotglob  # Reset the option
 
 # Copy .zsh_secrets and .zsh_local only if they don't exist
 if [ ! -f "$HOME/.config/zsh/.zsh_secrets" ] && [ -f "$DOTFILES_DIR/templates/.config/zsh/.zsh_secrets" ]; then
