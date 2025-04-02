@@ -25,6 +25,7 @@ Follow instructions for each tool to get started.
 - [zsh](#zsh)
 - [asdf](#asdf)
 - [tmux](#tmux)
+- [tmuxinator](#tmuxinator)
 - [neovim](#neovim)
 - [Github CLI](#github-cli)
 - [git](#git)
@@ -212,6 +213,26 @@ tmux source ~/.config/tmux/tmux.conf
 Install the plugins by pressing `prefix` + `I`.
 
 ---
+
+### tmuxinator
+
+Run the `scripts/configure_tmuxinator` script to install and configure `tmuxinator`.
+
+#### Manual instructions
+
+Install `tmuxinator` if not already installed.
+
+```bash
+gem install tmuxinator
+```
+
+Copy the example layouts to `~/.config/tmuxinator/` directory.
+
+```bash
+cp -r templates/.config/tmuxinator/* ~/.config/tmuxinator
+```
+
+Copy the example layouts and modify as necessary per project.
 
 ### neovim
 
