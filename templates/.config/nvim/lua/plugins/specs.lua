@@ -22,17 +22,59 @@ return {
       },
       adapters = {
         require("neotest-rspec")({
-          rspec_cmd = function()
-            return vim.tbl_flatten({
-              "bundle",
-              "exec",
-              "rspec",
-            })
+          rspec_cmd = function(position_type)
+            -- Check if docker-compose.yml exists and project relies on it for the app
+            local docker_compose_path = vim.fn.getcwd() .. "/docker-compose.yml"
+            local uses_docker = false
+
+            -- Check if the project directory has a docker-compose.yml file
+            if vim.fn.filereadable(docker_compose_path) == 1 then
+              -- Try to determine if the app service is defined in docker-compose
+              local docker_check = vim.fn.system("grep -q '\\sapp:' " .. docker_compose_path)
+              if vim.v.shell_error == 0 then
+                uses_docker = true
+              end
+            end
+
+            if uses_docker then
+              return vim.tbl_flatten({
+                "docker", "compose", "exec", "app", "bundle", "exec", "rspec"
+              })
+            else
+              return vim.tbl_flatten({
+                "bundle", "exec", "rspec"
+              })
+            end
           end,
 
-          -- Optional: Additional RSpec args (like formatting)
-          -- Example for using RSpec documentation format:
-          -- rspec_args = { "--format", "documentation" },
+          -- Use the JSON formatter instead of the custom formatter
+          formatter = "j",
+
+          -- Transform the file path for Docker containers
+          transform_spec_path = function(path)
+            -- Check if docker-compose.yml exists and project relies on it for the app
+            local docker_compose_path = vim.fn.getcwd() .. "/docker-compose.yml"
+            local uses_docker = false
+
+            -- Check if the project directory has a docker-compose.yml file
+            if vim.fn.filereadable(docker_compose_path) == 1 then
+              -- Try to determine if the app service is defined in docker-compose
+              local docker_check = vim.fn.system("grep -q '\\sapp:' " .. docker_compose_path)
+              if vim.v.shell_error == 0 then
+                uses_docker = true
+              end
+            end
+
+            if uses_docker then
+              -- Convert the local path to a path relative to the project root
+              local project_root = vim.fn.getcwd()
+              local relative_path = path:sub(#project_root + 2) -- +2 to account for the trailing slash
+              return relative_path
+            else
+              -- For local execution, use the full path
+              return path
+            end
+          end,
         }),
       },
     })
