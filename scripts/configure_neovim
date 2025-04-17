@@ -15,6 +15,14 @@ else
     echo "neovim is already installed."
 fi
 
+# Install ripgrep if not already installed
+if ! command -v rg &> /dev/null; then
+    echo "Installing ripgrep..."
+    brew install ripgrep
+else
+    echo "ripgrep is already installed."
+fi
+
 # Create config directory if it doesn't exist
 if [ ! -d "$HOME/.config/nvim" ]; then
     echo "Creating neovim config directory..."

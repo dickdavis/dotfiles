@@ -269,6 +269,12 @@ Install `neovim`.
 brew install neovim
 ```
 
+Install `ripgrep`.
+
+```bash
+brew install ripgrep
+```
+
 Make a config directory for neovim.
 
 ```bash
