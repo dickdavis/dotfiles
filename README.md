@@ -289,8 +289,6 @@ cp -r templates/.config/nvim/ ~/.config/nvim
 
 Run `:Lazy install` to install the plugins.
 
-You will need to authenticate with `:Codeium Auth` to use the `codeium.vim` plugin.
-
 Also, you should ensure that `ruby-lsp` and `standardrb` gems are installed.
 
 ---
