@@ -11,7 +11,35 @@ return {
       init_options = {
         formatter = 'standard',
         linters = { 'standard' },
+        enabledFeatures = {
+          "documentHighlights",
+          "documentSymbols",
+          "foldingRanges",
+          "selectionRanges",
+          "semanticHighlighting",
+          "formatting",
+          "codeActions",
+          "diagnostics",
+          "documentLink",
+          "hover",
+          "inlayHint",
+          "onTypeFormatting"
+        },
+        disabledFilePatterns = { "*.erb" },
       },
+      filetypes = { "ruby" },
+    })
+
+    -- Elixir LSP configuration
+    lspconfig.elixirls.setup({
+      capabilities = capabilities,
+      cmd = { vim.fn.expand("~/.config/elixir-ls-v0/language_server.sh") },
+      filetypes = { "elixir", "eelixir", "heex", "surface" },
+      root_dir = function(fname)
+        local matches = vim.fs.find({ "mix.exs" }, { upward = true, limit = 2, path = fname })
+        local child_or_root_path, maybe_umbrella_path = unpack(matches)
+        return vim.fs.dirname(maybe_umbrella_path or child_or_root_path)
+      end,
     })
 
     -- Lua server configuration for Neovim config files
