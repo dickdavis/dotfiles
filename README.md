@@ -291,6 +291,12 @@ Run `:Lazy install` to install the plugins.
 
 Also, you should ensure that `ruby-lsp` and `standardrb` gems are installed.
 
+Install the `elixir-ls` language server by downloading the zip file from [here](https://github.com/elixir-lsp/elixir-ls/releases/latest/), then moving the unzipped directory to `~/.config/elixir-ls-v0`. Make the `language_server.sh` script executable:
+
+```bash
+chmod +x ~/.config/elixir-ls-v0/language_server.sh
+```
+
 ---
 
 ### git

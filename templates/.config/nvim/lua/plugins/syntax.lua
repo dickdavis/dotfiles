@@ -18,6 +18,9 @@ return {
         "yaml",
         "json",
         "terraform",
+        "elixir",
+        "eex",
+        "heex"
       },
       ignore_install = {},
       -- Install parsers synchronously (only applied to `ensure_installed`)
