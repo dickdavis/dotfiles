@@ -33,7 +33,8 @@ Follow instructions for each tool to get started.
 - [Claude Code](#claude-code): using Claude within a terminal
 - [Claude Desktop](#claude-desktop): using Claude via app
 - [Dash](#dash): documentation tool
-- [Docker](#docker): building and running containers
+- [Podman Desktop](#podman-desktop): building and running containers
+- [AutoRaise](#autoraise): focus follows mouse for Mac
 
 ---
 
@@ -455,9 +456,13 @@ Generate and install the cheatsheets located in the `cheatsheets/` directory. Ru
 
 ---
 
-### Docker
+### Podman Desktop
 
-Install Docker by downloading it from the [official website](https://docs.docker.com/get-started/get-docker/).
+Install Podman. Refer to the [documentation](https://podman-desktop.io/docs/podman) for further installation and configuration instructions.
+
+```bash
+brew install podman-desktop
+```
 
 ### AutoRaise
 
