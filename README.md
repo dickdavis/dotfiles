@@ -458,3 +458,11 @@ Generate and install the cheatsheets located in the `cheatsheets/` directory. Ru
 ### Docker
 
 Install Docker by downloading it from the [official website](https://docs.docker.com/get-started/get-docker/).
+
+### AutoRaise
+
+Install AutoRaise and enable it in system preferences.
+
+```bash
+brew install --cask dimentium/autoraise/autoraiseapp
+```
