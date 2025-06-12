@@ -464,6 +464,8 @@ Install Podman. Refer to the [documentation](https://podman-desktop.io/docs/podm
 brew install podman-desktop
 ```
 
+---
+
 ### AutoRaise
 
 Install AutoRaise and enable it in system preferences.
