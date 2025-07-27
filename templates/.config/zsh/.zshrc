@@ -108,3 +108,6 @@ export EDITOR='nvim'
 # 1. Uses ASDF_DATA_DIR from .zshenv
 # 2. Adds shims to PATH
 # 3. Sources asdf.sh and completions
+
+# Load .envrc
+eval "$(direnv hook zsh)"

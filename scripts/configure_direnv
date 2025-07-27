@@ -1,0 +1,43 @@
+#!/bin/bash
+
+# Script to install and configure direnv
+# This script handles both initial setup and configuration updates
+
+set -e # Exit on any error
+
+echo "Starting direnv installation and configuration..."
+
+# Install direnv if not already installed
+if ! command -v direnv &> /dev/null; then
+    echo "Installing direnv..."
+    brew install direnv
+else
+    echo "direnv is already installed."
+fi
+
+# Create config directory if it doesn't exist
+if [ ! -d "$HOME/.config/direnv" ]; then
+    echo "Creating direnv config directory..."
+    mkdir -p "$HOME/.config/direnv"
+else
+    echo "direnv config directory already exists."
+fi
+
+# Copy the configuration files
+echo "Updating direnv configuration files..."
+# Get absolute path to dotfiles directory
+SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)
+DOTFILES_DIR=$(cd "$SCRIPT_DIR/.." && pwd)
+echo "Using dotfiles directory: $DOTFILES_DIR"
+
+# Copy direnvrc to config directory if template exists
+if [ -f "$DOTFILES_DIR/templates/.config/direnv/direnvrc" ]; then
+    echo "Copying direnvrc file..."
+    cp "$DOTFILES_DIR/templates/.config/direnv/direnvrc" "$HOME/.config/direnv/direnvrc"
+fi
+
+echo "direnv installation and configuration completed successfully."
+echo ""
+echo "NOTE: Make sure your shell has the direnv hook configured."
+echo "For zsh, add 'eval \"\$(direnv hook zsh)\"' to your .zshrc"
+echo "This should already be included in the dotfiles .zshrc template."

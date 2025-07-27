@@ -23,6 +23,7 @@ Follow instructions for each tool to get started.
 - [homebrew](#homebrew): package management
 - [alacritty](#alacritty): terminal emulator
 - [zsh](#zsh): shell
+- [direnv](#direnv): load environment variables from config files
 - [asdf](#asdf): version management for programming languages
 - [tmux](#tmux): terminal multiplexing
 - [tmuxinator](#tmuxinator): managing tmux layouts
@@ -113,6 +114,20 @@ cp templates/.zshenv ~/.zshenv
 ```
 
 Follow the instructions [here](https://draculatheme.com/zsh) to install the dracula theme manually.
+
+---
+
+### direnv
+
+Run the `scripts/configure_direnv` script to install and configure `direnv`.
+
+#### Manual instructions
+
+Install `direnv`.
+
+```bash
+brew install direnv
+```
 
 ---
 
