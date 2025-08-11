@@ -435,6 +435,33 @@ Add a local MCP server (example):
 claude mcp add my-server -- /path/to/server
 ```
 
+#### Claude Agents
+
+Custom Claude agents are included in this repository to enhance Claude Code's capabilities for specific tasks.
+
+**Automated Installation:**
+
+Run the configuration script to copy all agents to your local Claude configuration:
+
+```bash
+./scripts/configure_claude_agents
+```
+
+**Manual Installation:**
+
+Copy the agent files to your Claude agents directory:
+
+```bash
+mkdir -p ~/.claude/agents
+cp templates/.claude/agents/*.md ~/.claude/agents/
+```
+
+**Available Agents:**
+- `code-review-specialist`: Provides thorough code review with security and quality analysis
+- `ruby-expert-engineer`: Specializes in Ruby/Rails development with RSpec and standardrb
+- `terraform-aws-architect`: Designs and implements AWS infrastructure using Terraform
+- `troubleshooting-engineer`: Diagnoses and resolves complex software issues
+
 ---
 
 ### Claude Desktop
