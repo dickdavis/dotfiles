@@ -109,5 +109,8 @@ export EDITOR='nvim'
 # 2. Adds shims to PATH
 # 3. Sources asdf.sh and completions
 
+# Add local executables to path
+export PATH=$HOME/.local/bin:$PATH
+
 # Load .envrc
 eval "$(direnv hook zsh)"
