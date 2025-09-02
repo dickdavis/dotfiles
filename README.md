@@ -185,6 +185,9 @@ asdf plugin add golang
 # Install python plugin
 asdf plugin add python
 
+# Install kubectl
+asdf plugin add kubectl https://github.com/asdf-community/asdf-kubectl.git
+
 # Install the versions specified in .tool_versions
 asdf install
 ```
@@ -421,10 +424,10 @@ cp templates/.config/gh/config.yml ~/.config/gh/config.yml
 
 ### Claude Code
 
-Install the `claude-code` npm package.
+Install the `claude-code` package using the native installer.
 
 ```bash
-npm install -g @anthropic-ai/claude-code
+curl -fsSL https://claude.ai/install.sh | bash
 ```
 
 Enable vim keybindings with the `/vim` slash command.
