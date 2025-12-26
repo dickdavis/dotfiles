@@ -1,3 +1,4 @@
 alias reload="source ${XDG_CONFIG_HOME}/zsh/.zshrc"
 alias slurp="find . -type f -exec cat {} \; | pbcopy"
 alias tmate='tmate -f "${XDG_CONFIG_HOME}/tmate/tmate.conf"'
+alias git-prune-local='git branch | grep -vE "main|master" | xargs git branch -D'
