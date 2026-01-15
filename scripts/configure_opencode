@@ -1,0 +1,43 @@
+#!/bin/bash
+
+# Script to install and configure opencode
+# This script handles both initial setup and configuration updates
+
+set -e # Exit on any error
+
+echo "Starting opencode installation and configuration..."
+
+# Install opencode if not already installed
+if ! command -v opencode &> /dev/null; then
+    echo "Installing opencode..."
+    brew install anomalyco/tap/opencode
+else
+    echo "opencode is already installed."
+fi
+
+# Create config directory if it doesn't exist
+if [ ! -d "$HOME/.config/opencode" ]; then
+    echo "Creating opencode config directory..."
+    mkdir -p "$HOME/.config/opencode"
+else
+    echo "opencode config directory already exists."
+fi
+
+# Create themes directory if it doesn't exist
+if [ ! -d "$HOME/.config/opencode/themes" ]; then
+    echo "Creating opencode themes directory..."
+    mkdir -p "$HOME/.config/opencode/themes"
+else
+    echo "opencode themes directory already exists."
+fi
+
+# Copy the config files
+echo "Updating opencode configuration files..."
+DOTFILES_DIR="$(dirname "$(dirname "$0")")"
+cp "$DOTFILES_DIR/templates/.config/opencode/opencode.json" "$HOME/.config/opencode/opencode.json"
+cp "$DOTFILES_DIR/templates/.config/opencode/themes/dracula.json" "$HOME/.config/opencode/themes/dracula.json"
+
+echo "opencode configuration updated successfully."
+
+echo ""
+echo "opencode setup is now complete."

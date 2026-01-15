@@ -467,6 +467,48 @@ cp templates/.claude/agents/*.md ~/.claude/agents/
 
 ---
 
+### OpenCode
+
+Run the `scripts/configure_opencode` script to install and configure `opencode`.
+
+```bash
+./scripts/configure_opencode
+```
+
+#### Manual Instructions
+
+Install `opencode` using homebrew.
+
+```bash
+brew install anomalyco/tap/opencode
+```
+
+Make a config directory for `opencode`.
+
+```bash
+mkdir ~/.config/opencode
+```
+
+Copy `.config/opencode/opencode.json` to the `~/.config/opencode` directory.
+
+```bash
+cp -r templates/.config/opencode/opencode.json ~/.config/opencode
+```
+
+Make a directory for themes.
+
+```bash
+mkdir ~/.config/opencode/themes
+```
+
+Copy `.config/opencode/themes/dracula.json` to the `~/.config/opencode/themes` directory.
+
+```bash
+cp -r templates/.config/opencode/themes/dracula.json ~/.config/opencode/themes
+```
+
+---
+
 ### Claude Desktop
 
 Install Claude Desktop by downloading it from the [official website](https://claude.ai/download).
