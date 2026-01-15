@@ -32,6 +32,7 @@ Follow instructions for each tool to get started.
 - [git](#git): version control
 - [Github CLI](#github-cli): interacting with Github via CLI
 - [Claude Code](#claude-code): using Claude within a terminal
+- [OpenCode](#opencode): using LLMs to assist development
 - [Claude Desktop](#claude-desktop): using Claude via app
 - [Dash](#dash): documentation tool
 - [Podman Desktop](#podman-desktop): building and running containers
