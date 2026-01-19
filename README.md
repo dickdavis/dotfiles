@@ -425,46 +425,30 @@ cp templates/.config/gh/config.yml ~/.config/gh/config.yml
 
 ### Claude Code
 
+Run the `scripts/configure_claude_code` script to install and configure Claude Code.
+
+```bash
+./scripts/configure_claude_code
+```
+
+#### Manual Instructions
+
 Install the `claude-code` package using the native installer.
 
 ```bash
 curl -fsSL https://claude.ai/install.sh | bash
 ```
 
-Enable vim keybindings with the `/vim` slash command.
-
-Add a local MCP server (example):
+Copy configuration files to your Claude directory.
 
 ```bash
-claude mcp add my-server -- /path/to/server
-```
-
-#### Claude Agents
-
-Custom Claude agents are included in this repository to enhance Claude Code's capabilities for specific tasks.
-
-**Automated Installation:**
-
-Run the configuration script to copy all agents to your local Claude configuration:
-
-```bash
-./scripts/configure_claude_agents
-```
-
-**Manual Installation:**
-
-Copy the agent files to your Claude agents directory:
-
-```bash
-mkdir -p ~/.claude/agents
+mkdir -p ~/.claude/agents ~/.claude/output-styles
+cp templates/.claude/settings.json ~/.claude/
+cp templates/.claude/statusline.sh ~/.claude/
+chmod +x ~/.claude/statusline.sh
 cp templates/.claude/agents/*.md ~/.claude/agents/
+cp templates/.claude/output-styles/*.md ~/.claude/output-styles/
 ```
-
-**Available Agents:**
-- `code-review-specialist`: Provides thorough code review with security and quality analysis
-- `ruby-expert-engineer`: Specializes in Ruby/Rails development with RSpec and standardrb
-- `terraform-aws-architect`: Designs and implements AWS infrastructure using Terraform
-- `troubleshooting-engineer`: Diagnoses and resolves complex software issues
 
 ---
 
