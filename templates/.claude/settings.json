@@ -1,0 +1,9 @@
+{
+  "alwaysThinkingEnabled": true,
+  "outputStyle": "pithy",
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/statusline.sh",
+    "padding": 0
+  }
+}

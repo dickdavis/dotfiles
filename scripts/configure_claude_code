@@ -1,0 +1,90 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+# Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m' # No Color
+
+# Paths
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(dirname "$SCRIPT_DIR")"
+SOURCE_DIR="$REPO_ROOT/templates/.claude"
+TARGET_DIR="$HOME/.claude"
+
+echo -e "${GREEN}Configuring Claude Code...${NC}"
+
+# Check if source directory exists
+if [[ ! -d "$SOURCE_DIR" ]]; then
+    echo -e "${RED}Error: Source directory $SOURCE_DIR does not exist${NC}"
+    exit 1
+fi
+
+# Create target directory if it doesn't exist
+if [[ ! -d "$TARGET_DIR" ]]; then
+    echo -e "${YELLOW}Creating directory: $TARGET_DIR${NC}"
+    mkdir -p "$TARGET_DIR"
+fi
+
+# Copy settings.json
+if [[ -f "$SOURCE_DIR/settings.json" ]]; then
+    echo "  - Copying settings.json"
+    cp "$SOURCE_DIR/settings.json" "$TARGET_DIR/"
+fi
+
+# Copy and make statusline.sh executable
+if [[ -f "$SOURCE_DIR/statusline.sh" ]]; then
+    echo "  - Copying statusline.sh"
+    cp "$SOURCE_DIR/statusline.sh" "$TARGET_DIR/"
+    chmod +x "$TARGET_DIR/statusline.sh"
+fi
+
+# Copy agents if they exist
+if [[ -d "$SOURCE_DIR/agents" ]]; then
+    echo -e "${GREEN}Copying agent files...${NC}"
+    mkdir -p "$TARGET_DIR/agents"
+    for agent_file in "$SOURCE_DIR/agents"/*.md; do
+        if [[ -f "$agent_file" ]]; then
+            filename=$(basename "$agent_file")
+            echo "  - Copying $filename"
+            cp "$agent_file" "$TARGET_DIR/agents/"
+        fi
+    done
+fi
+
+# Copy output-styles if they exist
+if [[ -d "$SOURCE_DIR/output-styles" ]]; then
+    echo -e "${GREEN}Copying output style files...${NC}"
+    mkdir -p "$TARGET_DIR/output-styles"
+    for style_file in "$SOURCE_DIR/output-styles"/*.md; do
+        if [[ -f "$style_file" ]]; then
+            filename=$(basename "$style_file")
+            echo "  - Copying $filename"
+            cp "$style_file" "$TARGET_DIR/output-styles/"
+        fi
+    done
+fi
+
+echo -e "${GREEN}✓ Claude Code configuration complete!${NC}"
+echo ""
+echo "Installed files:"
+[[ -f "$TARGET_DIR/settings.json" ]] && echo "  - settings.json (enables extended thinking, custom statusline)"
+[[ -f "$TARGET_DIR/statusline.sh" ]] && echo "  - statusline.sh (Dracula-themed status line)"
+if [[ -d "$TARGET_DIR/agents" ]]; then
+    for agent_file in "$TARGET_DIR/agents"/*.md; do
+        if [[ -f "$agent_file" ]]; then
+            filename=$(basename "$agent_file" .md)
+            echo "  - agents/$filename"
+        fi
+    done
+fi
+if [[ -d "$TARGET_DIR/output-styles" ]]; then
+    for style_file in "$TARGET_DIR/output-styles"/*.md; do
+        if [[ -f "$style_file" ]]; then
+            filename=$(basename "$style_file" .md)
+            echo "  - output-styles/$filename"
+        fi
+    done
+fi
