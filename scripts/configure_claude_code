@@ -67,6 +67,19 @@ if [[ -d "$SOURCE_DIR/output-styles" ]]; then
     done
 fi
 
+# Copy skills if they exist (recursive copy since skills have subdirectories)
+if [[ -d "$SOURCE_DIR/skills" ]]; then
+    echo -e "${GREEN}Copying skill files...${NC}"
+    mkdir -p "$TARGET_DIR/skills"
+    for skill_dir in "$SOURCE_DIR/skills"/*/; do
+        if [[ -d "$skill_dir" ]]; then
+            skill_name=$(basename "$skill_dir")
+            echo "  - Copying $skill_name"
+            cp -r "$skill_dir" "$TARGET_DIR/skills/"
+        fi
+    done
+fi
+
 echo -e "${GREEN}✓ Claude Code configuration complete!${NC}"
 echo ""
 echo "Installed files:"
@@ -85,6 +98,14 @@ if [[ -d "$TARGET_DIR/output-styles" ]]; then
         if [[ -f "$style_file" ]]; then
             filename=$(basename "$style_file" .md)
             echo "  - output-styles/$filename"
+        fi
+    done
+fi
+if [[ -d "$TARGET_DIR/skills" ]]; then
+    for skill_dir in "$TARGET_DIR/skills"/*/; do
+        if [[ -d "$skill_dir" ]]; then
+            skill_name=$(basename "$skill_dir")
+            echo "  - skills/$skill_name"
         fi
     done
 fi
