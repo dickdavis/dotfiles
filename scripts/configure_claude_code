@@ -75,7 +75,8 @@ if [[ -d "$SOURCE_DIR/skills" ]]; then
         if [[ -d "$skill_dir" ]]; then
             skill_name=$(basename "$skill_dir")
             echo "  - Copying $skill_name"
-            cp -r "$skill_dir" "$TARGET_DIR/skills/"
+            # Remove trailing slash to copy directory itself, not just contents
+            cp -r "${skill_dir%/}" "$TARGET_DIR/skills/"
         fi
     done
 fi
