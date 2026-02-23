@@ -431,6 +431,8 @@ Run the `scripts/configure_claude_code` script to install and configure Claude C
 ./scripts/configure_claude_code
 ```
 
+Note: my [personal-marketplace](https://github.com/dickdavis/personal-marketplace/tree/main) is configured within settings to allow for easy custom plugin installation.
+
 #### Manual Instructions
 
 Install the `claude-code` package using the native installer.
