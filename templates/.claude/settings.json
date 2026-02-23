@@ -7,7 +7,8 @@
     "padding": 0
   },
   "enabledPlugins": {
-    "comments-plugin@personal-marketplace": true
+    "comments-plugin@personal-marketplace": true,
+    "rails-plugin@personal-marketplace": true
   },
   "extraKnownMarketplaces": {
     "personal-marketplace": {
