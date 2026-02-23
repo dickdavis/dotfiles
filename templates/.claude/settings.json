@@ -5,5 +5,14 @@
     "type": "command",
     "command": "~/.claude/statusline.sh",
     "padding": 0
+  },
+  "enabledPlugins": {
+    "comments-plugin@personal-marketplace": true,
+  },
+  "extraKnownMarketplaces": {
+    "personal-marketplace": {
+      "source": "github",
+      "repo": "dickdavis/personal-marketplace"
+    }
   }
 }
