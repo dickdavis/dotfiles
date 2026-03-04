@@ -34,6 +34,18 @@
         ]
       }
     ],
+    "PostToolUse": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$HOME\"/.claude/hooks/log-tool-usage.sh",
+            "async": true
+          }
+        ]
+      }
+    ],
     "Notification": [
       {
         "matcher": "",
