@@ -444,13 +444,15 @@ curl -fsSL https://claude.ai/install.sh | bash
 Copy configuration files to your Claude directory.
 
 ```bash
-mkdir -p ~/.claude/agents ~/.claude/output-styles ~/.claude/skills
+mkdir -p ~/.claude/agents ~/.claude/output-styles ~/.claude/skills ~/.claude/hooks
 cp templates/.claude/settings.json ~/.claude/
 cp templates/.claude/statusline.sh ~/.claude/
 chmod +x ~/.claude/statusline.sh
 cp templates/.claude/agents/*.md ~/.claude/agents/
 cp templates/.claude/output-styles/*.md ~/.claude/output-styles/
 cp -r templates/.claude/skills/* ~/.claude/skills/
+cp templates/.claude/hooks/* ~/.claude/hooks/
+chmod +x ~/.claude/hooks/*
 ```
 
 ---

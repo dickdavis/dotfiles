@@ -1,14 +1,9 @@
 {
   "alwaysThinkingEnabled": true,
-  "outputStyle": "pithy",
-  "statusLine": {
-    "type": "command",
-    "command": "~/.claude/statusline.sh",
-    "padding": 0
-  },
   "enabledPlugins": {
     "comments-plugin@personal-marketplace": true,
-    "rails-plugin@personal-marketplace": true
+    "rails-plugin@personal-marketplace": true,
+    "technical-writer@personal-marketplace": true
   },
   "extraKnownMarketplaces": {
     "personal-marketplace": {
@@ -17,5 +12,35 @@
         "repo": "dickdavis/personal-marketplace"
       }
     }
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$HOME\"/.claude/hooks/protect-files.sh"
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$HOME\"/.claude/hooks/notify-if-unfocused.sh"
+          }
+        ]
+      }
+    ]
+  },
+  "outputStyle": "pithy",
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/statusline.sh",
+    "padding": 0
   }
 }
