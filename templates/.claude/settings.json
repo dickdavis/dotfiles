@@ -1,9 +1,9 @@
 {
   "alwaysThinkingEnabled": true,
   "enabledPlugins": {
-    "comments-plugin@personal-marketplace": true,
     "rails-plugin@personal-marketplace": true,
-    "technical-writer@personal-marketplace": true
+    "technical-writer@personal-marketplace": true,
+    "terminal-security@personal-marketplace": true
   },
   "extraKnownMarketplaces": {
     "personal-marketplace": {
@@ -14,129 +14,10 @@
     }
   },
   "hooks": {
-    "PreToolUse": [
-      {
-        "matcher": "Edit|Write",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "\"$HOME\"/.claude/hooks/protect-files.sh"
-          }
-        ]
-      },
-      {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "\"$HOME\"/.claude/hooks/guard-shell.sh"
-          }
-        ]
-      }
-    ],
-    "SessionStart": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "\"$HOME\"/.claude/hooks/log-session-activity.sh",
-            "async": true
-          }
-        ]
-      }
-    ],
-    "SessionEnd": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "\"$HOME\"/.claude/hooks/log-session-activity.sh",
-            "async": true
-          }
-        ]
-      }
-    ],
-    "UserPromptSubmit": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "\"$HOME\"/.claude/hooks/log-session-activity.sh",
-            "async": true
-          }
-        ]
-      }
-    ],
-    "PostToolUse": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "\"$HOME\"/.claude/hooks/log-session-activity.sh",
-            "async": true
-          }
-        ]
-      }
-    ],
-    "PostToolUseFailure": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "\"$HOME\"/.claude/hooks/log-session-activity.sh",
-            "async": true
-          }
-        ]
-      }
-    ],
-    "SubagentStart": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "\"$HOME\"/.claude/hooks/log-session-activity.sh",
-            "async": true
-          }
-        ]
-      }
-    ],
-    "SubagentStop": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "\"$HOME\"/.claude/hooks/log-session-activity.sh",
-            "async": true
-          }
-        ]
-      }
-    ],
-    "Stop": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "\"$HOME\"/.claude/hooks/log-session-activity.sh",
-            "async": true
-          }
-        ]
-      }
-    ],
     "Notification": [
       {
         "matcher": "",
         "hooks": [
-          {
-            "type": "command",
-            "command": "\"$HOME\"/.claude/hooks/log-session-activity.sh",
-            "async": true
-          },
           {
             "type": "command",
             "command": "\"$HOME\"/.claude/hooks/notify-if-unfocused.sh"
