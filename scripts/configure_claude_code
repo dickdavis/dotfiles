@@ -67,6 +67,20 @@ if [[ -d "$SOURCE_DIR/output-styles" ]]; then
     done
 fi
 
+# Copy hooks if they exist
+if [[ -d "$SOURCE_DIR/hooks" ]]; then
+    echo -e "${GREEN}Copying hook files...${NC}"
+    mkdir -p "$TARGET_DIR/hooks"
+    for hook_file in "$SOURCE_DIR/hooks"/*; do
+        if [[ -f "$hook_file" ]]; then
+            filename=$(basename "$hook_file")
+            echo "  - Copying $filename"
+            cp "$hook_file" "$TARGET_DIR/hooks/"
+            chmod +x "$TARGET_DIR/hooks/$filename"
+        fi
+    done
+fi
+
 # Copy skills if they exist (recursive copy since skills have subdirectories)
 if [[ -d "$SOURCE_DIR/skills" ]]; then
     echo -e "${GREEN}Copying skill files...${NC}"
@@ -99,6 +113,14 @@ if [[ -d "$TARGET_DIR/output-styles" ]]; then
         if [[ -f "$style_file" ]]; then
             filename=$(basename "$style_file" .md)
             echo "  - output-styles/$filename"
+        fi
+    done
+fi
+if [[ -d "$TARGET_DIR/hooks" ]]; then
+    for hook_file in "$TARGET_DIR/hooks"/*; do
+        if [[ -f "$hook_file" ]]; then
+            filename=$(basename "$hook_file")
+            echo "  - hooks/$filename"
         fi
     done
 fi
