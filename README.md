@@ -37,6 +37,7 @@ Follow instructions for each tool to get started.
 - [Dash](#dash): documentation tool
 - [Podman Desktop](#podman-desktop): building and running containers
 - [AutoRaise](#autoraise): focus follows mouse for Mac
+- [Tailscale](#tailscale): mesh VPN
 
 ---
 
@@ -550,3 +551,42 @@ Install AutoRaise and enable it in system preferences.
 ```bash
 brew install --cask dimentium/autoraise/autoraiseapp
 ```
+
+---
+
+### Tailscale
+
+Download and run the [standalone installer](https://pkgs.tailscale.com/stable/Tailscale-latest-macos.pkg). Follow the onboarding flow to install the VPN configuration and sign in with GitHub.
+
+#### SSH Setup
+
+Retrieve your public key from Proton Pass.
+
+Enable Remote Login on your laptop:
+
+System Settings → General → Sharing → Remote Login
+
+Add your public key to `authorized_keys`:
+
+```bash
+mkdir -p ~/.ssh
+echo "ssh-ed25519 AAAA…" >> ~/.ssh/authorized_keys
+```
+
+Replace `ssh-ed25519 AAAA…` with your actual public key from Proton Pass.
+
+Fix permissions:
+
+```bash
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/authorized_keys
+```
+
+Restart the SSH daemon:
+
+```bash
+sudo launchctl stop com.openssh.sshd
+sudo launchctl start com.openssh.sshd
+```
+
+Connect from your phone using your Tailscale IP, port `22`, and your local machine username (run `whoami` to check).
