@@ -95,6 +95,19 @@ if [[ -d "$SOURCE_DIR/skills" ]]; then
     done
 fi
 
+# Copy channels if they exist (recursive copy since channels have subdirectories)
+if [[ -d "$SOURCE_DIR/channels" ]]; then
+    echo -e "${GREEN}Copying channel files...${NC}"
+    mkdir -p "$TARGET_DIR/channels"
+    for channel_dir in "$SOURCE_DIR/channels"/*/; do
+        if [[ -d "$channel_dir" ]]; then
+            channel_name=$(basename "$channel_dir")
+            echo "  - Copying $channel_name"
+            cp -r "${channel_dir%/}" "$TARGET_DIR/channels/"
+        fi
+    done
+fi
+
 echo -e "${GREEN}✓ Claude Code configuration complete!${NC}"
 echo ""
 echo "Installed files:"
@@ -129,6 +142,14 @@ if [[ -d "$TARGET_DIR/skills" ]]; then
         if [[ -d "$skill_dir" ]]; then
             skill_name=$(basename "$skill_dir")
             echo "  - skills/$skill_name"
+        fi
+    done
+fi
+if [[ -d "$TARGET_DIR/channels" ]]; then
+    for channel_dir in "$TARGET_DIR/channels"/*/; do
+        if [[ -d "$channel_dir" ]]; then
+            channel_name=$(basename "$channel_dir")
+            echo "  - channels/$channel_name"
         fi
     done
 fi

@@ -445,7 +445,7 @@ curl -fsSL https://claude.ai/install.sh | bash
 Copy configuration files to your Claude directory.
 
 ```bash
-mkdir -p ~/.claude/agents ~/.claude/output-styles ~/.claude/skills ~/.claude/hooks
+mkdir -p ~/.claude/agents ~/.claude/output-styles ~/.claude/skills ~/.claude/hooks ~/.claude/channels/messenger
 cp templates/.claude/settings.json ~/.claude/
 cp templates/.claude/statusline.sh ~/.claude/
 chmod +x ~/.claude/statusline.sh
@@ -454,7 +454,17 @@ cp templates/.claude/output-styles/*.md ~/.claude/output-styles/
 cp -r templates/.claude/skills/* ~/.claude/skills/
 cp templates/.claude/hooks/* ~/.claude/hooks/
 chmod +x ~/.claude/hooks/*
+cp -r templates/.claude/channels/* ~/.claude/channels/
 ```
+
+During the channels research preview, install the messenger channel plugin manually.
+
+```bash
+git clone git@github.com:dickdavis/channel-messenger-plugin.git /path/to/channel-messenger-plugin
+claude mcp add messenger -s user -- caffeinate -i bun run --cwd /path/to/channel-messenger-plugin server.ts
+```
+
+Set the `CHANNEL_MESSENGER_TOKEN` value in `~/.claude/channels/messenger/.env`.
 
 ---
 
