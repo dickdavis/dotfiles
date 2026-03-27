@@ -32,7 +32,6 @@ Follow instructions for each tool to get started.
 - [git](#git): version control
 - [Github CLI](#github-cli): interacting with Github via CLI
 - [Claude Code](#claude-code): using Claude within a terminal
-- [OpenCode](#opencode): using LLMs to assist development
 - [Claude Desktop](#claude-desktop): using Claude via app
 - [Dash](#dash): documentation tool
 - [Podman Desktop](#podman-desktop): building and running containers
@@ -465,48 +464,6 @@ claude mcp add messenger -s user -- caffeinate -i bun run --cwd /path/to/channel
 ```
 
 Set the `CHANNEL_MESSENGER_TOKEN` value in `~/.claude/channels/messenger/.env`.
-
----
-
-### OpenCode
-
-Run the `scripts/configure_opencode` script to install and configure `opencode`.
-
-```bash
-./scripts/configure_opencode
-```
-
-#### Manual Instructions
-
-Install `opencode` using homebrew.
-
-```bash
-brew install anomalyco/tap/opencode
-```
-
-Make a config directory for `opencode`.
-
-```bash
-mkdir ~/.config/opencode
-```
-
-Copy `.config/opencode/opencode.json` to the `~/.config/opencode` directory.
-
-```bash
-cp -r templates/.config/opencode/opencode.json ~/.config/opencode
-```
-
-Make a directory for themes.
-
-```bash
-mkdir ~/.config/opencode/themes
-```
-
-Copy `.config/opencode/themes/dracula.json` to the `~/.config/opencode/themes` directory.
-
-```bash
-cp -r templates/.config/opencode/themes/dracula.json ~/.config/opencode/themes
-```
 
 ---
 
