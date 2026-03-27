@@ -1,9 +1,10 @@
 {
   "alwaysThinkingEnabled": true,
   "enabledPlugins": {
+    "channel-messenger-plugin@personal-marketplace": true,
+    "model-context-protocol-rb-plugin@personal-marketplace": true,
     "rails-plugin@personal-marketplace": true,
-    "technical-writer@personal-marketplace": true,
-    "terminal-security@personal-marketplace": true
+    "technical-writer@personal-marketplace": true
   },
   "extraKnownMarketplaces": {
     "personal-marketplace": {
